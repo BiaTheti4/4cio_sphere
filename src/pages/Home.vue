@@ -1,20 +1,21 @@
 <script setup>
-
-
-import toggle from "@/components/Toggle.vue";
-import logo from "@/components/footer.vue"
+import Toggle from "@/components/Toggle.vue";
+import Footer from "@/components/footer.vue";
 </script>
 
 <template>
-  <section class="flex flex-col items-center  justify-start min-h-screen mx-10 pt-3 space-y-12" >
-    <toggle></toggle>
-<!--    <Sphere class="size-3/12"></Sphere>-->
-    <logo></logo>
-  </section>
-
-
+  <div class="flex flex-col min-h-screen">
+    <!-- Основной контент -->
+    <section class="flex-grow flex flex-col items-center justify-start mx-10 pt-3 space-y-12">
+      <Toggle />
+    </section>
+    <!-- Футер -->
+    <footer class="py-4 flex justify-center">
+      <Footer />  <!-- Используй компонент Footer здесь -->
+    </footer>
+  </div>
 </template>
 
 <style scoped>
-
+/* Можно добавить стили для дополнительного форматирования */
 </style>
