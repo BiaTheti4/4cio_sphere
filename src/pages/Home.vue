@@ -4,18 +4,17 @@ import Footer from "@/components/footer.vue";
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
-    <!-- Основной контент -->
-    <section class="flex-grow flex flex-col items-center justify-start mx-10 pt-3 space-y-12">
+  <div class="flex flex-col min-h-screen overflow-hidden h-screen">
+    <div class="flex-grow flex flex-col items-center justify-start mx-10 pt-3 ">
       <Toggle />
-    </section>
-    <!-- Футер -->
-    <footer class="py-4 flex justify-center">
-      <Footer />  <!-- Используй компонент Footer здесь -->
+    </div>
+
+    <footer class=" flex justify-center mb-2">
+      <Footer />
     </footer>
   </div>
 </template>
 
 <style scoped>
-/* Можно добавить стили для дополнительного форматирования */
+
 </style>

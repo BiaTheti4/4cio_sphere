@@ -17,7 +17,7 @@
       </button>
     </div>
 
-    <!-- Фиксированный блок для содержимого -->
+
     <div class="relative mt-6">
       <transition name="fade">
         <div v-if="isToggled" key="prediction" class="absolute w-full">
@@ -41,12 +41,12 @@ const isToggled = ref(true);
 const buttonClass = (isActive) => [
   'px-6 py-2 rounded-full font-semibold text-sm ', // Общий стиль для кнопок
   isActive ? 'bg-white text-violet-600' : 'text-black',
-  isActive ? 'translate-x-0' : 'translate-x-[2px]' // Чуть-чуть сдвигаем
+
 ];
 </script>
 
 <style scoped>
-/* Анимация плавного появления/исчезновения */
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -64,22 +64,8 @@ const buttonClass = (isActive) => [
   opacity: 1;
 }
 
-/* Плавная смена цветов и теней для кнопок */
+
 button {
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

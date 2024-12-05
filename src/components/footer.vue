@@ -4,7 +4,6 @@
 
 <template>
   <div>
-
     <img :src="iconUrl" alt="My Icon" />
   </div>
 </template>
