@@ -2,7 +2,7 @@
   <div class=" flex flex-col items-center justify-center">
     <div class="text-center">
       <div class="font-bold text-[64px] text-nowrap">План мероприятий</div>
-      <div class="text-[28px] mt-2">2025 год вместе с клубом 4CIO</div>
+      <div class="text-[28px] mt-2 font-bold">2025 год <span class="underline decoration-wavy decoration-purple-600">вместе</span> с клубом 4CIO</div>
     </div>
     <form @submit.prevent="submitForm" >
       <div class="mt-6 p-4 bg-violet-100 rounded-2xl shadow-md  flex flex-col justify-between h-[435px] w-[574px]">
