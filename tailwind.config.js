@@ -5,6 +5,11 @@ export default {
         "./src/**/*.{vue,js,ts,jsx,tsx}",
     ],
     theme: {
+        screens:{
+            'tablet': '360px',
+            'laptop': '768px',
+            'desktop': '1440px',
+        },
         extend: {
             fontFamily: {
                 sans: ['Roboto', 'sans-serif'],
