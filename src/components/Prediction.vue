@@ -34,7 +34,7 @@
     <transition name="fade" appear>
       <div
           class="absolute top-[23%] -right-[82%]"
-          v-if="!hasClicked && isDesktop"
+          v-if="(!hasClicked && isDesktop) "
       >
         <svg
             width="330"
@@ -64,7 +64,7 @@
     <transition name="fade" appear>
       <div
           class="absolute top-[110%] -right-[0%]"
-          v-if="!hasClicked && (isTablet || isMobile)"
+          v-if="!hasClicked &&  isMobile||(!hasClicked &&isTablet)"
       >
         <svg
             :width="isMobile ? 273 : 324"
@@ -142,8 +142,8 @@ import {ref, computed} from 'vue';
 import Sphere from './Sphere.vue';
 import loadingGif from '../assets/loading.gif';
 
-const isMobile = computed(() => window.innerWidth <= 360);
-const isTablet = computed(() => window.innerWidth > 360 && window.innerWidth <= 768);
+const isMobile = computed(() => (window.innerWidth <= 660));
+const isTablet = computed(() => window.innerWidth > 660 && window.innerWidth <= 768);
 const isDesktop = computed(() => window.innerWidth > 768);
 
 window.addEventListener('resize', () => {
@@ -213,10 +213,16 @@ const getSmallSize = () => {
       height: '328px'
     };
   }
-  if (width >= 768) {
+  if (width >= 768 ) {
     return {
       width: '328px',
       height: '328px'
+    };
+  }
+  if(width >= 470) {
+    return {
+      width: '100%',
+      height: '260px'
     };
   }
   return {

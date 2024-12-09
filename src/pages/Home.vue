@@ -6,7 +6,7 @@ import Footer from "@/components/footer.vue";
 <template>
   <div class="flex flex-col min-h-screen overflow-hidden h-screen">
     <div class="flex-grow flex flex-col items-center justify-start mx-10 pt-3 ">
-      <Toggle />
+      <Toggle class="h-[56px]" />
     </div>
 
     <footer class=" flex justify-center mb-2">

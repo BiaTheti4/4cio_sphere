@@ -5,7 +5,7 @@
         class="flex items-center justify-start p-1 rounded-full shadow-lg mx-auto bg-violet-100"
         :class="{
         'w-[456px] h-[62px]': !isMobile,
-        'w-[328px] h-[43px]': isMobile,
+        'w-[100%] h-[43px]': isMobile,
       }"
     >
       <!-- Кнопка "Предсказание" -->
@@ -13,7 +13,7 @@
           @click="isToggled = true"
           :class="buttonClass(isToggled)"
           :style="{
-          width: isMobile ? '160px' : '224px',
+          width: isMobile ? '100%' : '224px',
           height: isMobile ? '35px' : '54px',
         }"
       >
@@ -25,7 +25,7 @@
           @click="isToggled = false"
           :class="buttonClass(!isToggled)"
           :style="{
-          width: isMobile ? '160px' : '224px',
+          width: isMobile ? '100%' : '224px',
           height: isMobile ? '35px' : '54px',
         }"
       >
@@ -34,7 +34,7 @@
     </div>
 
     <!-- Контент переключателя -->
-    <div class="relative mt-6">
+    <div class="relative">
       <transition name="fade">
         <div v-if="isToggled" key="prediction" class="absolute w-full">
           <Prediction />
