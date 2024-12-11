@@ -5,7 +5,7 @@
         class="flex items-center justify-start p-1 rounded-full shadow-lg mx-auto bg-violet-100"
         :class="{
         'w-[456px] h-[62px]': !isMobile,
-        'w-[100%] h-[43px]': isMobile,
+        'w-full h-[50px]': isMobile,
       }"
     >
       <!-- Кнопка "Предсказание" -->
@@ -13,8 +13,9 @@
           @click="isToggled = true"
           :class="buttonClass(isToggled)"
           :style="{
-          width: isMobile ? '100%' : '224px',
-          height: isMobile ? '35px' : '54px',
+          width: isMobile ? '50%' : '224px',
+          height: isMobile ? '40px' : '54px',
+          fontSize: isMobile ? '14px' : '16px',
         }"
       >
         Предсказание
@@ -25,8 +26,9 @@
           @click="isToggled = false"
           :class="buttonClass(!isToggled)"
           :style="{
-          width: isMobile ? '100%' : '224px',
-          height: isMobile ? '35px' : '54px',
+          width: isMobile ? '50%' : '224px',
+          height: isMobile ? '40px' : '54px',
+          fontSize: isMobile ? '14px' : '16px',
         }"
       >
         Планы
@@ -37,10 +39,10 @@
     <div class="relative">
       <transition name="fade">
         <div v-if="isToggled" key="prediction" class="absolute w-full">
-          <Prediction />
+          <Prediction/>
         </div>
         <div v-else key="form" class="absolute w-full">
-          <Form />
+          <Form/>
         </div>
       </transition>
     </div>
@@ -48,7 +50,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import {ref, computed, onMounted, onUnmounted} from 'vue';
 import Prediction from "@/components/Prediction.vue";
 import Form from "@/components/Form.vue";
 
@@ -58,7 +60,7 @@ const isToggled = ref(true);
 const isMobile = ref(false);
 
 const updateResponsiveFlags = () => {
-  isMobile.value = window.innerWidth <= 360;
+  isMobile.value = window.innerWidth <= 550;
 };
 
 onMounted(() => {
@@ -72,8 +74,8 @@ onUnmounted(() => {
 
 // Классы кнопок
 const buttonClass = (isActive) => [
-  'px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 ease-in-out',
-  isActive ? 'bg-white text-violet-600' : 'text-black',
+  'px-4 py-2 rounded-full font-semibold transition-all duration-300 ease-in-out',
+  isActive ? 'bg-white text-violet-600 shadow-md' : 'text-black',
 ];
 </script>
 

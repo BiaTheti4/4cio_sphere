@@ -1,72 +1,74 @@
 <template>
-  <div class=" flex flex-col items-center justify-center">
+  <div class="flex flex-col items-center justify-center px-4">
     <div class="text-center">
-      <div class="font-bold text-[64px] text-nowrap">План мероприятий</div>
-      <div class="text-[28px] mt-2 font-bold">2025 год <span class="underline decoration-wavy decoration-purple-600">вместе</span> с клубом 4CIO</div>
+      <div class="heading-large">План мероприятий</div>
+      <div class="heading-small mt-2">
+        2025 год <span class="underline decoration-wavy decoration-purple-600">вместе</span> с клубом 4CIO
+      </div>
     </div>
-    <form @submit.prevent="submitForm" >
-      <div class="mt-6 p-4 bg-violet-100 rounded-2xl shadow-md  flex flex-col justify-between h-[435px] w-[574px]">
-        <div class=" text-left">
-          <label for="firstName" class="block  font-medium text-[#4F4A5A] text-[16px]">Имя</label>
+    <form @submit.prevent="submitForm">
+      <div class="form-container">
+        <div class="text-left">
+          <label for="firstName" class="label">Имя</label>
           <input
               id="firstName"
               v-model="formData.firstName"
               type="text"
               placeholder="Иван"
               required
-              class="border p-2 w-full rounded-lg"
+              class="input"
           />
         </div>
         <div class="text-left">
-          <label for="lastName" class="block  font-medium text-[#4F4A5A] text-[16px]">Фамилия</label>
+          <label for="lastName" class="label">Фамилия</label>
           <input
               id="lastName"
               v-model="formData.lastName"
               type="text"
               placeholder="Иванов"
               required
-              class="border p-2 w-full rounded-lg"
+              class="input"
           />
         </div>
-        <div class=" text-left text-[16px]">
-          <label for="company" class="block  font-medium text-[#4F4A5A] text-[16px]]">Компания</label>
+        <div class="text-left">
+          <label for="company" class="label">Компания</label>
           <input
               id="company"
               v-model="formData.company"
               type="text"
               placeholder="Технология"
               required
-              class="border p-2 w-full rounded-lg"
+              class="input"
           />
         </div>
-        <div class="text-left text-[16px]">
-          <label for="position" class="block  font-medium text-[#4F4A5A] text-[16px]">Должность</label>
+        <div class="text-left">
+          <label for="position" class="label">Должность</label>
           <input
               id="position"
               v-model="formData.position"
               type="text"
               placeholder="Директор по развитию"
               required
-              class="border p-2 w-[542px] h-[48px] rounded-lg"
+              class="input"
           />
         </div>
-        <div class="text-left text-[16px]">
-          <label for="email" class="block  font-medium text-[#4F4A5A] text-[16px]">E-mail</label>
+        <div class="text-left">
+          <label for="email" class="label">E-mail</label>
           <input
               id="email"
               v-model="formData.email"
               type="email"
               placeholder="mail@example.ru"
               required
-              class="border p-2 w-full rounded-lg"
+              class="input"
           />
         </div>
       </div>
       <div>
-        <button type="submit" class="rounded-2xl text-white bg-violet-500 h-[56px] w-full font-bold mt-2" >
+        <button type="submit" class="submit-button">
           Получить план
         </button>
-        <div class="text-sm text-gray-600 p-2 text-center mt-2 w-[435px] text-nowrap">
+        <div class="agreement-text">
           Нажимая на кнопку, вы соглашаетесь на обработку своих <span class="underline">персональных данных</span>.
         </div>
       </div>
@@ -75,14 +77,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 const formData = ref({
   firstName: '',
   lastName: '',
   company: '',
   position: '',
-  email: ''
+  email: '',
 });
 
 const submitForm = () => {
@@ -92,11 +94,91 @@ const submitForm = () => {
     lastName: '',
     company: '',
     position: '',
-    email: ''
+    email: '',
   };
 };
 </script>
 
 <style scoped>
-/* Дополнительные стили */
+/* Базовые стили */
+.heading-large {
+  font-size: 64px;
+  font-weight: bold;
+  text-nowrap: nowrap;
+}
+
+.heading-small {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.form-container {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #ede9fe;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 574px;
+  width: 100%;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4f4a5a;
+}
+
+.input {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.submit-button {
+  margin-top: 1rem;
+  background-color: #8b5cf6;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 3.5rem;
+  border-radius: 1rem;
+  width: 100%;
+}
+
+.agreement-text {
+  font-size: 0.875rem;
+  color: #4b5563;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .heading-large {
+    font-size: 32px;
+  }
+
+  .heading-small {
+    font-size: 18px;
+  }
+
+  .form-container {
+    padding: 0.5rem;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .submit-button {
+    height: 3rem;
+  }
+
+  .agreement-text {
+    font-size: 0.75rem;
+  }
+}
 </style>
