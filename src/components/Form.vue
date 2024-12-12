@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col items-center justify-center px-4">
-    <div class="text-center">
-      <div class="heading-large">План мероприятий</div>
-      <div class="heading-small mt-2">
+    <div class="text-block">
+      <div class="heading-large mb-2">План мероприятий</div>
+      <div class="heading-small mb-[110px]">
         2025 год <span class="underline decoration-wavy decoration-purple-600">вместе</span> с клубом 4CIO
       </div>
     </div>
@@ -104,7 +104,7 @@ const submitForm = () => {
 .heading-large {
   font-size: 64px;
   font-weight: bold;
-  text-nowrap: nowrap;
+  text-wrap: nowrap;
 }
 
 .heading-small {
@@ -113,7 +113,7 @@ const submitForm = () => {
 }
 
 .form-container {
-  margin-top: 1.5rem;
+
   padding: 1rem;
   background-color: #ede9fe;
   border-radius: 1rem;
@@ -153,11 +153,15 @@ const submitForm = () => {
   font-size: 0.875rem;
   color: #4b5563;
   text-align: center;
-  margin-top: 0.5rem;
+
 }
 
 /* Адаптивность */
-@media (max-width: 768px) {
+@media (max-width: 620px) {
+  .text-block {
+    text-align: center;
+  }
+
   .heading-large {
     font-size: 32px;
   }
@@ -168,9 +172,37 @@ const submitForm = () => {
 
   .form-container {
     padding: 0.5rem;
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 100%;
+
+  }
+
+  .submit-button {
+    height: 3rem;
+  }
+
+  .agreement-text {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 620px) {
+  .text-block {
+    text-align: center;
+  }
+
+  .heading-large {
+    font-size: 32px;
+  }
+
+  .heading-small {
+    font-size: 18px;
+  }
+
+  .form-container {
+
+    width: 574px;
+    height: 527px;
+
   }
 
   .submit-button {
