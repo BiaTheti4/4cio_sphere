@@ -31,17 +31,17 @@
           fontSize: isMobile ? '14px' : '16px',
         }"
       >
-        Планы
+        План
       </button>
     </div>
 
     <!-- Контент переключателя -->
     <div class="relative">
       <transition name="fade">
-        <div v-if="isToggled" key="prediction" class="absolute w-full">
+        <div v-if="isToggled" key="prediction" class="">
           <Prediction/>
         </div>
-        <div v-else key="form" class="absolute w-full">
+        <div v-else key="form" class="">
           <Form/>
         </div>
       </transition>
