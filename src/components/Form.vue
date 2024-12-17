@@ -118,18 +118,140 @@ const mapValidationErrors = (validationErrors) => {
 </script>
 
 <style scoped>
-.success-block {
-  font-size: 18px;
-  line-height: 24px;
-  padding: 16px;
-  background-color: #f0fff4;
-  border-radius: 12px;
-  text-align: center;
-  margin-bottom: 16px;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px 0 4px 0;
+  align-items: center;
+  width: 100%;
 }
 
-.success-message {
+.error-block {
+  font-size: 16px;
+  line-height: 22px;
+  padding: 16px;
+  text-wrap: nowrap;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #FFF0F0;
+  border-radius: 24px;
+  margin-bottom: 8px;
+}
+
+/* Заголовки */
+.text-block {
+  max-width: 500px;
+  max-height: 120px;
+}
+.heading-large {
+  font-size: 36px;
   font-weight: bold;
-  color: #38a169;
+  text-wrap: nowrap;
+  text-align: center;
+}
+
+.heading-small {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Контейнер формы */
+.form-container {
+  padding: 1rem;
+  background-color: #ede9fe;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Поля формы */
+.label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4f4a5a;
+}
+
+.input {
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  font-size: 1rem;
+}
+
+/* Кнопка */
+.submit-button {
+  margin-top: 1rem;
+  background-color: #8b5cf6;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+  height: 3.5rem;
+  border-radius: 0.75rem;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #7c3aed;
+}
+
+/* Текст соглашения */
+.agreement-text {
+  font-size: 0.875rem;
+  color: #4b5563;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .heading-large {
+    font-size: 44px;
+  }
+
+  .form-container {
+    padding: 0.75rem;
+  }
+
+  .submit-button {
+    height: 3rem;
+    font-size: 1rem;
+  }
+
+  .agreement-text {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading-large {
+    font-size: 9vw;
+  }
+  .error-block {
+    text-wrap: auto;
+  }
+  .form-container {
+    padding: 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .label {
+    font-size: 0.875rem;
+  }
+
+  .input {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .submit-button {
+    height: 2.75rem;
+    font-size: 0.875rem;
+  }
 }
 </style>
