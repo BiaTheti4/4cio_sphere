@@ -8,7 +8,7 @@ const windowWidth = ref(window.innerWidth);
 window.addEventListener('resize', () => {
   windowWidth.value = window.innerWidth;
 });
-// Вычисляемое свойство для определения мобильного устройства
+
 const isMobile = computed(() => windowWidth.value <= 768);
 </script>
 
@@ -25,7 +25,7 @@ const isMobile = computed(() => windowWidth.value <= 768);
 </template>
 
 <style scoped>
-/* Базовые стили */
+
 
 .home-container{
 flex-grow: 1;
@@ -37,7 +37,7 @@ flex-grow: 1;
 }
 
 
-/* Адаптивность */
+
 @media (max-width: 550px) {
   .toggle-responsive {
     width: 90%;

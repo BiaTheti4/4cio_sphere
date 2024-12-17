@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- Контейнер переключателя -->
+
     <div
         class="flex items-center justify-start p-1 rounded-full shadow-lg mx-auto bg-violet-100"
         :class="{
@@ -8,7 +8,7 @@
         'w-full h-[50px]': isMobile,
       }"
     >
-      <!-- Кнопка "Предсказание" -->
+
       <button
           @click="isToggled = true"
           :class="buttonClass(isToggled)"
@@ -21,7 +21,7 @@
         Предсказание
       </button>
 
-      <!-- Кнопка "Планы" -->
+
       <button
           @click="isToggled = false"
           :class="buttonClass(!isToggled)"
@@ -35,7 +35,7 @@
       </button>
     </div>
 
-    <!-- Контент переключателя -->
+
     <div class="relative">
       <transition name="fade">
         <div v-if="isToggled" key="prediction" class="">
@@ -56,7 +56,7 @@ import Form from "@/components/Form.vue";
 
 const isToggled = ref(true);
 
-// Адаптивность
+
 const isMobile = ref(false);
 
 const updateResponsiveFlags = () => {
@@ -72,7 +72,7 @@ onUnmounted(() => {
   window.removeEventListener('resize', updateResponsiveFlags);
 });
 
-// Классы кнопок
+
 const buttonClass = (isActive) => [
   'px-4 py-2 rounded-full font-semibold transition-all duration-300 ease-in-out',
   isActive ? 'bg-white text-violet-600 shadow-md' : 'text-black',

@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col items-center justify-center text-center">
-    <!-- Первая надпись -->
+
     <div class="font-bold text-nowrap" :class="textSizeClass">
       Шар предсказаний
     </div>
 
-    <!-- Вторая надпись -->
+
     <div class="font-bold text-nowrap" :class="subTextSizeClass">
       Какой ваш <span class="underline decoration-wavy decoration-purple-600">новый</span> 2025 год?
     </div>
@@ -16,17 +16,17 @@
         @click="getRandomPrediction"
     ></Sphere>
 
-    <!-- Облако для ПК -->
+
     <div>
       <transition name="fade" appear>
         <div class="absolute top-[23%] -right-[82%]" v-if="!hasClicked && isDesktop">
           <svg width="330" height="68" viewBox="0 0 330 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- SVG content -->
+
           </svg>
         </div>
       </transition>
 
-      <!-- Облако для планшета и мобилки -->
+
       <transition name="fade" appear>
         <div
             class="absolute top-[110%] -right-[0%]"
@@ -39,7 +39,7 @@
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
           >
-            <!-- SVG content -->
+
           </svg>
         </div>
       </transition>
@@ -47,13 +47,13 @@
 
     <transition name="slide-fade">
       <div v-show="!isLoading && selectedPrediction" class="relative mt-[8px]">
-        <!-- Первый блок -->
+
         <div
             class="absolute bg-violet-200 rounded-2xl -top-4 left-1/2 transform -translate-x-1/2 z-0"
             :class="predictionBoxClass"
         ></div>
 
-        <!-- Второй блок -->
+
         <div
             class="relative bg-violet-100 rounded-2xl flex items-center justify-center text-black z-10 mb-[5%]"
             :class="predictionTextClass"

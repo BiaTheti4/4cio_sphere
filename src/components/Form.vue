@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <!-- Заголовок -->
+
     <div class="text-block">
       <div class="heading-large mb-2">План мероприятий</div>
       <div class="heading-small mb-[10vh]">
@@ -8,22 +8,26 @@
       </div>
     </div>
 
-    <!-- Блок ошибки -->
+
     <div v-if="submitError" class="error-block text-red-700">
       При отправке формы произошла ошибка. Попробуйте снова
     </div>
 
-    <!-- Успешное сообщение -->
-    <div v-if="formSubmitted" class="success-block text-green-700">
-      <div class="success-message">
 
+    <div v-if="formSubmitted" class="success-block">
+      <div class="flex flex-col items-center justify-center text-center">
+
+          <img alt="" :src="success" class="w-[96px] h-[96px]"  />
+          <span class="first-success-block">План мероприятий</span>
+          <span class="second-success-block">отправлен</span>
+          <span class="third-success-block">проверьте указанную почту</span>
       </div>
     </div>
 
-    <!-- Форма -->
+
     <form v-else @submit.prevent="submitForm" class="w-full max-w-[574px]">
       <div class="form-container">
-        <!-- Поля формы -->
+
         <div v-for="(field, index) in fields" :key="index" class="text-left">
           <label :for="field.id" class="label">{{ field.label }}</label>
           <input
@@ -39,7 +43,7 @@
         </div>
       </div>
 
-      <!-- Кнопка и текст соглашения -->
+
       <div>
         <button type="submit" class="submit-button" :disabled="loading">
           {{ loading ? "Отправка..." : "Получить план" }}
@@ -55,6 +59,8 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import success from "@/assets/success.svg"
+
 const apiServer = import.meta.env.VITE_API_SERVER;
 
 const formData = ref({
@@ -67,10 +73,10 @@ const formData = ref({
 
 const errors = ref({});
 const loading = ref(false);
-const submitError = ref(false); // Переменная для отображения ошибки
-const formSubmitted = ref(false); // Переменная для успешной отправки формы
+const submitError = ref(false);
+const formSubmitted = ref(false);
 
-// Поля формы для итерации
+
 const fields = [
   { id: "first_name", model: "first_name", label: "Имя", type: "text", placeholder: "Иван" },
   { id: "last_name", model: "last_name", label: "Фамилия", type: "text", placeholder: "Иванов" },
@@ -81,20 +87,17 @@ const fields = [
 
 const submitForm = async () => {
   errors.value = {};
-  submitError.value = false; // Сброс ошибки при новой попытке отправки
+  submitError.value = false;
   loading.value = true;
 
   try {
-    // Отправка данных на сервер
     const response = await axios.post(apiServer, formData.value);
-
     if (response.status === 200) {
       console.log("Успешно отправлено:", formData.value);
-      formSubmitted.value = true; // Устанавливаем флаг успешной отправки
+      formSubmitted.value = true;
     }
   } catch (error) {
-    submitError.value = true; // В случае ошибки отображаем блок ошибки
-    formSubmitted.value = true;
+    submitError.value = true;
     if (error.response && error.response.status === 422) {
       const validationErrors = error.response.data.errors || {};
       errors.value = mapValidationErrors(validationErrors);
@@ -118,6 +121,18 @@ const mapValidationErrors = (validationErrors) => {
 </script>
 
 <style scoped>
+.first-success-block{
+font-size:64px ;
+  font-weight: 500;
+}
+.second-success-block{
+  font-size:64px ;
+  font-weight: 500;
+}
+.third-success-block{
+  font-size: 18px;
+  font-weight: 400;
+}
 .main-container {
   display: flex;
   flex-direction: column;
@@ -136,10 +151,10 @@ const mapValidationErrors = (validationErrors) => {
   margin: 0 auto;
   background-color: #FFF0F0;
   border-radius: 24px;
-  margin-bottom: 8px;
+
 }
 
-/* Заголовки */
+
 .text-block {
   max-width: 500px;
   max-height: 120px;
@@ -157,18 +172,16 @@ const mapValidationErrors = (validationErrors) => {
   text-align: center;
 }
 
-/* Контейнер формы */
 .form-container {
   padding: 1rem;
   background-color: #ede9fe;
-  border-radius: 1rem;
+  border-radius: 24px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* Поля формы */
 .label {
   font-size: 1rem;
   font-weight: 500;
@@ -183,7 +196,6 @@ const mapValidationErrors = (validationErrors) => {
   font-size: 1rem;
 }
 
-/* Кнопка */
 .submit-button {
   margin-top: 1rem;
   background-color: #8b5cf6;
@@ -200,7 +212,6 @@ const mapValidationErrors = (validationErrors) => {
   background-color: #7c3aed;
 }
 
-/* Текст соглашения */
 .agreement-text {
   font-size: 0.875rem;
   color: #4b5563;
@@ -208,8 +219,19 @@ const mapValidationErrors = (validationErrors) => {
   margin-top: 0.5rem;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
+  .first-success-block{
+    font-size:44px ;
+    font-weight: 500;
+  }
+  .second-success-block{
+    font-size:44px ;
+    font-weight: 500;
+  }
+  .third-success-block{
+    font-size: 16px;
+    font-weight: 400;
+  }
   .heading-large {
     font-size: 44px;
   }
@@ -229,6 +251,18 @@ const mapValidationErrors = (validationErrors) => {
 }
 
 @media (max-width: 480px) {
+  .first-success-block{
+    font-size:32px ;
+    font-weight: 500;
+  }
+  .second-success-block{
+    font-size:32px ;
+    font-weight: 500;
+  }
+  .third-success-block{
+    font-size: 16px;
+    font-weight: 400;
+  }
   .heading-large {
     font-size: 9vw;
   }
