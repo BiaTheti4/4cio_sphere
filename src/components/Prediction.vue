@@ -186,13 +186,17 @@ const sphereStyle = computed(() => {
 });
 
 const getRandomPrediction = () => {
-  hasClicked.value = true;
-  isLoading.value = true;
-  setTimeout(() => {
-    const randomIndex = Math.floor(Math.random() * predictions.length);
-    selectedPrediction.value = predictions[randomIndex];
-    isLoading.value = false;
-  }, 2000);
+  if(!isLoading.value) {
+    hasClicked.value = true;
+    isLoading.value = true;
+    setTimeout(() => {
+      const randomIndex = Math.floor(Math.random() * predictions.length);
+      selectedPrediction.value = predictions[randomIndex];
+      isLoading.value = false;
+    }, 2000);
+  }else{
+    return 0
+  }
 };
 </script>
 
