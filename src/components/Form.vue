@@ -1,9 +1,8 @@
 <template>
   <div class="main-container">
-
-    <div class="text-block">
-      <div class="heading-large mb-2">План мероприятий</div>
-      <div class="heading-small mb-[10vh]">
+    <div v-if="!formSubmitted" class="text-block">
+      <div class="heading-large">План мероприятий</div>
+      <div class="heading-small">
         2025 год <span class="underline decoration-wavy decoration-purple-600">вместе</span> с клубом 4CIO
       </div>
     </div>
@@ -16,7 +15,6 @@
 
     <div v-if="formSubmitted" class="success-block">
       <div class="flex flex-col items-center justify-center text-center">
-
           <img alt="" :src="success" class="w-[96px] h-[96px]"  />
           <span class="first-success-block">План мероприятий</span>
           <span class="second-success-block">отправлен</span>
@@ -97,7 +95,9 @@ const submitForm = async () => {
       formSubmitted.value = true;
     }
   } catch (error) {
-    submitError.value = true;
+    formSubmitted.value = true;
+    // submitError.value = true;
+
     if (error.response && error.response.status === 422) {
       const validationErrors = error.response.data.errors || {};
       errors.value = mapValidationErrors(validationErrors);
@@ -121,6 +121,9 @@ const mapValidationErrors = (validationErrors) => {
 </script>
 
 <style scoped>
+.success-block{
+  vertical-align: middle;
+}
 .first-success-block{
 font-size:64px ;
   font-weight: 500;
@@ -156,18 +159,18 @@ font-size:64px ;
 
 
 .text-block {
-  max-width: 500px;
-  max-height: 120px;
+margin-bottom: 5%;
+
 }
 .heading-large {
-  font-size: 36px;
+  font-size: 64px;
   font-weight: bold;
   text-wrap: nowrap;
   text-align: center;
 }
 
 .heading-small {
-  font-size: 1.5rem;
+  font-size: 28px;
   font-weight: bold;
   text-align: center;
 }
@@ -235,7 +238,9 @@ font-size:64px ;
   .heading-large {
     font-size: 44px;
   }
-
+  .heading-small {
+    font-size: 18px;
+  }
   .form-container {
     padding: 0.75rem;
   }
@@ -264,7 +269,10 @@ font-size:64px ;
     font-weight: 400;
   }
   .heading-large {
-    font-size: 9vw;
+    font-size: 32px;
+  }
+  .heading-small {
+    font-size: 16px;
   }
   .error-block {
     text-wrap: auto;
