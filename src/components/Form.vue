@@ -15,9 +15,10 @@
 
     <div v-if="formSubmitted" class="success-block">
       <div class="flex flex-col items-center justify-center text-center">
-          <img alt="" :src="success" class="w-[96px] h-[96px]"  />
-          <span class="second-success-block">В ближайшее время вы получите план мероприятий на указанную почту</span>
-
+          <img alt="" :src="test" class="w-[96px] h-[96px]"  />
+          <span class="first-success-block">План мероприятий</span>
+          <span class="second-success-block">отправлен</span>
+          <span class="third-success-block">проверьте указанную почту</span>
       </div>
     </div>
 
@@ -57,6 +58,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import success from "@/assets/success.svg"
+import test from "@/assets/Vector.png"
 
 const apiServer = import.meta.env.VITE_API_SERVER;
 
@@ -94,8 +96,8 @@ const submitForm = async () => {
       formSubmitted.value = true;
     }
   } catch (error) {
-    // formSubmitted.value = true;
-    submitError.value = true;
+    formSubmitted.value = true;
+    // submitError.value = true;
 
     if (error.response && error.response.status === 422) {
       const validationErrors = error.response.data.errors || {};
