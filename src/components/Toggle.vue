@@ -2,7 +2,7 @@
   <div>
 
     <div
-        class="flex items-center justify-start p-1 rounded-full shadow-lg mx-auto bg-violet-100"
+        class="flex items-center justify-start p-1 rounded-full  mx-auto bg-violet-100"
         :class="{
         'w-[456px] h-[62px]': !isMobile,
         'w-full h-[50px]': isMobile,
@@ -75,7 +75,7 @@ onUnmounted(() => {
 
 const buttonClass = (isActive) => [
   'px-4 py-2 rounded-full font-semibold transition-all duration-300 ease-in-out',
-  isActive ? 'bg-white text-violet-600 shadow-md' : 'text-black',
+  isActive ? 'bg-white text-violet-600' : 'text-black',
 ];
 </script>
 

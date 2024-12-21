@@ -84,7 +84,7 @@
 
     <button
         @click="getRandomPrediction"
-        class="rounded-2xl text-white bg-violet-500 font-bold flex items-center justify-center transition-all duration-300 ease-in-out h-[56px] mx-[5%]"
+        class="button-prediction rounded-2xl text-white bg-violet-500 font-bold flex items-center justify-center  h-[56px] mx-[5%]"
         :class="buttonClass"
     >
       <div v-if="isLoading">
@@ -230,6 +230,15 @@ const getRandomPrediction = () => {
 </script>
 
 <style scoped>
+.button-prediction {
+  background: linear-gradient(90deg, #8453D4 0%, #8656D5 20%, #8657D6 40%, #8B61D9 60%, #8F68DC 80%, #9472E0 100%);
+
+}
+.button-prediction:hover{
+  background: #9472E0;
+
+}
+
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }

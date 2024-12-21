@@ -18,7 +18,7 @@ const isMobile = computed(() => windowWidth.value <= 768);
       <Toggle class="toggle-responsive pt-[13px]" />
     </div>
 
-    <footer v-if="!isMobile" class="flex justify-center mb-2 pt-">
+    <footer  class="flex justify-center mb-2 pt-">
       <Footer />
     </footer>
   </div>
