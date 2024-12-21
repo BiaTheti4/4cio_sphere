@@ -66,7 +66,7 @@ const formData = ref({
   first_name: "",
   last_name: "",
   company: "",
-  jobTitle: "",
+  jobtitle: "",
   email: "",
 });
 
@@ -80,7 +80,7 @@ const fields = [
   { id: "first_name", model: "first_name", label: "Имя", type: "text", placeholder: "Иван" },
   { id: "last_name", model: "last_name", label: "Фамилия", type: "text", placeholder: "Иванов" },
   { id: "company", model: "company", label: "Компания", type: "text", placeholder: "Технология" },
-  { id: "jobTitle", model: "jobTitle", label: "Должность", type: "text", placeholder: "Директор по развитию" },
+  { id: "jobtitle", model: "jobtitle", label: "Должность", type: "text", placeholder: "Директор по развитию" },
   { id: "email", model: "email", label: "E-mail", type: "email", placeholder: "mail@example.ru" },
 ];
 
