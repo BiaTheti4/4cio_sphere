@@ -15,7 +15,7 @@
 
     <div v-if="formSubmitted" class="success-block">
       <div class="flex flex-col items-center justify-center text-center">
-          <img alt="" :src="success" class="w-[96px] h-[96px]"  />
+          <img alt="" :src="test" class="w-[96px] h-[96px]"  />
           <span class="first-success-block">План мероприятий</span>
           <span class="second-success-block">отправлен</span>
           <span class="third-success-block">проверьте указанную почту</span>
@@ -58,6 +58,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import success from "@/assets/success.svg"
+import test from "@/assets/Vector.png"
 
 const apiServer = import.meta.env.VITE_API_SERVER;
 
