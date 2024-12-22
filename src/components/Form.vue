@@ -218,7 +218,7 @@ margin-bottom: 5%;
   border-radius: 8px;
   width: 100%;
   font-size: 16px;
-  max-height: 48px;
+  height: 1%;
 }
 
 .submit-button {
