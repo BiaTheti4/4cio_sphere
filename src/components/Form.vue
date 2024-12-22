@@ -142,21 +142,14 @@ const mapValidationErrors = (validationErrors) => {
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 100vh; /* Убедитесь, что блок занимает всю высоту окна */
+  height: 100vh;
   width: 100%;
 }
 .first-success-block{
 font-size:64px ;
   font-weight: 500;
 }
-.second-success-block{
-  font-size:64px ;
-  font-weight: 500;
-}
-.third-success-block{
-  font-size: 18px;
-  font-weight: 400;
-}
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -201,6 +194,8 @@ margin-bottom: 5%;
 }
 
 .form-container {
+  width: 100%;
+  max-height: 435px;
   padding: 16px;
   background-color: #ede9fe;
   border-radius: 24px;
@@ -223,7 +218,7 @@ margin-bottom: 5%;
   border-radius: 8px;
   width: 100%;
   font-size: 16px;
-  min-height: 48px;
+  max-height: 48px;
 }
 
 .submit-button {
@@ -245,7 +240,7 @@ margin-bottom: 5%;
 .agreement-text {
   font-size: 0.875rem;
   color: #4b5563;
-  text-align: center;
+  text-align: left;
   margin-top: 0.5rem;
 }
 
