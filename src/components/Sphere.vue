@@ -1,12 +1,12 @@
 <script setup>
-const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isAndroid = /android/i.test(navigator.userAgent);
 </script>
 
 <template>
   <div class="video-container">
-    <img v-if="isSafari" src="/3d-glassy-spheric-vortex-of-pastel-light.gif" alt="Анимация"/>
-    <video v-else autoplay loop muted playsinline>
-      <source src="/3d-glassy-spheric-vortex-of-pastel-light.webm" type="video/webm"/>
+    <video autoplay loop muted playsinline>
+      <source v-if="isAndroid" src="/3d-glassy-spheric-vortex-of-pastel-light.webm" type="video/mp4"/>
+      <source v-else src="/3d-glassy-spheric-vortex-of-pastel-light.mov" type="video/mp4"/>
       Ваш браузер не поддерживает воспроизведение видео.
     </video>
   </div>
