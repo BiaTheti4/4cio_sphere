@@ -13,7 +13,7 @@
     </div>
 
 
-    <div v-if="formSubmitted" class="success-block">
+    <div v-if="formSubmitted" class="success-block mt-[20%]">
       <div class="flex flex-col items-center justify-center text-center">
           <img alt="" :src="test" class="w-[96px] h-[96px]"  />
           <span class="first-success-block">План мероприятий</span>

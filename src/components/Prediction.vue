@@ -1,17 +1,15 @@
 <template>
   <div class="flex flex-col items-center justify-center text-center">
-
-    <div class="font-bold text-nowrap" :class="textSizeClass">
-      Шар предсказаний
+    <div class="height-[107px]">
+      <div class="font-bold text-nowrap" :class="textSizeClass">
+        Шар предсказаний
+      </div>
+      <div class="font-bold text-nowrap" :class="subTextSizeClass">
+        Какой ваш <span class="underline decoration-wavy decoration-purple-600">новый</span> 2025 год?
+      </div>
     </div>
-
-
-    <div class="font-bold text-nowrap" :class="subTextSizeClass">
-      Какой ваш <span class="underline decoration-wavy decoration-purple-600">новый</span> 2025 год?
-    </div>
-
     <Sphere
-        class="sphere transition-all duration-500 ease-in-out cursor-pointer"
+        class="sphere  m-auto transition-all duration-500 ease-in-out cursor-pointer"
         :style="sphereStyle"
         @click="getRandomPrediction"
     ></Sphere>
@@ -41,7 +39,7 @@
 
       <transition name="fade" appear>
         <div
-            class="absolute top-[102%] -right-[0%]"
+            class="absolute top-[102%] -right-[0%] "
             v-if="!hasClicked && (isMobile || isTablet)"
         >
           <svg
@@ -74,7 +72,7 @@
 
 
         <div
-            class="relative bg-violet-100 rounded-2xl flex items-center justify-center text-black z-10 mb-[5%] p-[2%]"
+            class="relative bg-violet-100 rounded-2xl flex items-center justify-center text-black z-10 mb-[8px] p-[2%]"
             :class="predictionTextClass"
         >
           {{ selectedPrediction }}
@@ -125,13 +123,13 @@ const subTextSizeClass = computed(() => {
 const predictionBoxClass = computed(() => {
   if (isMobile.value) return 'w-[90%] h-[100%]';
   if (isTablet.value) return 'w-[516px] h-[100%]';
-  return 'w-[542px] h-[100%]';
+  return 'w-[542px] h-[15vh]';
 });
 
 const predictionTextClass = computed(() => {
   if (isMobile.value) return 'w-[100%] h-auto text-[16px]';
-  if (isTablet.value) return 'w-[548px] h-auto text-lg';
-  return 'w-[574px] h-[168px] text-xl';
+  if (isTablet.value) return 'w-[548px] h-auto text-[14px]';
+  return 'w-[574px] h-[15vh] text-[16px]';
 });
 
 const buttonClass = computed(() => {
@@ -189,7 +187,7 @@ const sphereStyle = computed(() => {
       return {width: '260px', height: '260px'};
     }
     if (hasClicked.value) {
-      return {width: '328px', height: '328px'};
+      return {width: '328px', height: '30vh'};
     }
   }
   if (isTablet.value) {
@@ -197,20 +195,20 @@ const sphereStyle = computed(() => {
       return {width: '508px', height: '508px'};
     }
     if (hasClicked.value) {
-      return {width: '328px', height: '328px'};
+      return {width: '328px', height: '30vh'};
     }
   }
   if (isDesktop.value) {
     if (isLoading.value) {
-      return {width: '574px', height: '574px'};
+      return {width: '60vh', height: '60vh'};
     }
     if (hasClicked.value) {
-      return {width: '328px', height: '328px'};
+      return {width: '328px', height: '30vh'};
     }
   }
   return {
-    width: isMobile.value ? '318px' : isTablet.value ? '508px' : '574px',
-    height: isMobile.value ? '318px' : isTablet.value ? '508px' : '574px'
+    width: isMobile.value ? '30vh' : isTablet.value ? '508px' : '60vh',
+    height: isMobile.value ? '30vh' : isTablet.value ? '508px' : '60vh'
   };
 });
 
@@ -230,11 +228,13 @@ const getRandomPrediction = () => {
 </script>
 
 <style scoped>
+
 .button-prediction {
   background: linear-gradient(90deg, #8453D4 0%, #8656D5 20%, #8657D6 40%, #8B61D9 60%, #8F68DC 80%, #9472E0 100%);
 
 }
-.button-prediction:hover{
+
+.button-prediction:hover {
   background: #9472E0;
 
 }
