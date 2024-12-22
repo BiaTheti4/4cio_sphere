@@ -9,17 +9,18 @@ window.addEventListener('resize', () => {
   windowWidth.value = window.innerWidth;
 });
 
-const isMobile = computed(() => windowWidth.value <= 768);
+
 const isMetrics = +import.meta.env.VITE_IS_METRICS;
+
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen overflow-hidden h-screen my-12px">
+  <div class="flex flex-col min-h-screen overflow-hidden h-screen my-12px justify-between">
     <div class="home-container">
       <Toggle class="toggle-responsive pt-[13px]" />
     </div>
 
-    <footer class="flex justify-center mb-2 ">
+    <footer class="flex justify-center mb-2 h-auto w-full">
       <Footer />
     </footer>
   </div>
@@ -55,8 +56,6 @@ flex-grow: 1;
   justify-content: flex-start;
   width: 100%;
 }
-
-
 
 @media (max-width: 550px) {
   .toggle-responsive {

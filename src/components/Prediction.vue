@@ -1,15 +1,15 @@
 <template>
-  <div class="flex flex-col items-center justify-center text-center">
-    <div class="height-[107px]">
-      <div class="font-bold text-nowrap" :class="textSizeClass">
+  <div class="flex flex-col items-center  text-center ">
+    <div>
+      <div class="font-[500] leading-[64px] text-nowrap mb-[12px]" :class="textSizeClass">
         Шар предсказаний
       </div>
-      <div class="font-bold text-nowrap" :class="subTextSizeClass">
+      <div class="font-[500] leading-[30px] text-nowrap " :class="subTextSizeClass">
         Какой ваш <span class="underline decoration-wavy decoration-purple-600">новый</span> 2025 год?
       </div>
     </div>
     <Sphere
-        class="sphere  m-auto transition-all duration-500 ease-in-out cursor-pointer"
+        class="m-auto transition-all duration-500 ease-in-out cursor-pointer"
         :style="sphereStyle"
         @click="getRandomPrediction"
     ></Sphere>
@@ -127,8 +127,8 @@ const predictionBoxClass = computed(() => {
 });
 
 const predictionTextClass = computed(() => {
-  if (isMobile.value) return 'w-[100%] h-auto text-[16px]';
-  if (isTablet.value) return 'w-[548px] h-auto text-[14px]';
+  if (isMobile.value) return 'w-[100%] h-auto text-[14px]';
+  if (isTablet.value) return 'w-[548px] h-auto text-[16px]';
   return 'w-[574px] h-[15vh] text-[16px]';
 });
 
@@ -187,28 +187,28 @@ const sphereStyle = computed(() => {
       return {width: '260px', height: '260px'};
     }
     if (hasClicked.value) {
-      return {width: '328px', height: '30vh'};
+      return {width: '300px', height: '300px'};
     }
   }
   if (isTablet.value) {
     if (isLoading.value) {
-      return {width: '508px', height: '508px'};
+      return {width: '508px', height: 'auto'};
     }
     if (hasClicked.value) {
-      return {width: '328px', height: '30vh'};
+      return {width: '328px', height: 'auto'};
     }
   }
   if (isDesktop.value) {
     if (isLoading.value) {
-      return {width: '60vh', height: '60vh'};
+      return {width: '60vh', height: 'auto'};
     }
     if (hasClicked.value) {
-      return {width: '328px', height: '30vh'};
+      return {width: '328px', height: 'auto'};
     }
   }
   return {
-    width: isMobile.value ? '30vh' : isTablet.value ? '508px' : '60vh',
-    height: isMobile.value ? '30vh' : isTablet.value ? '508px' : '60vh'
+    width: isMobile.value ? '40vh' : isTablet.value ? '508px' : '60vh',
+    height: isMobile.value ? '40vh' : isTablet.value ? '508px' : '60vh'
   };
 });
 
@@ -236,7 +236,6 @@ const getRandomPrediction = () => {
 
 .button-prediction:hover {
   background: #9472E0;
-
 }
 
 .slide-fade-enter-active {
