@@ -20,8 +20,8 @@ const isMetrics = +import.meta.env.VITE_IS_METRICS;
       <Toggle class="toggle-responsive pt-[13px]" />
     </div>
 
-    <footer class="flex justify-center mb-2 h-auto w-full">
-      <Footer />
+    <footer class="main-footer">
+      <Footer class="flex" />
     </footer>
   </div>
   <template v-if="isMetrics">
@@ -46,7 +46,13 @@ const isMetrics = +import.meta.env.VITE_IS_METRICS;
 </template>
 
 <style scoped>
+.main-footer{
 
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+}
 
 .home-container{
 flex-grow: 1;
@@ -56,7 +62,9 @@ flex-grow: 1;
   justify-content: flex-start;
   width: 100%;
 }
+.toggle-responsive{
 
+}
 @media (max-width: 550px) {
   .toggle-responsive {
     width: 90%;

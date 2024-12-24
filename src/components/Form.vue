@@ -1,8 +1,10 @@
 <template>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scaleС=1.0, user-scalable=no">
   <div class="main-container">
+
     <div v-if="!formSubmitted" class="text-block">
       <div class="heading-large">План мероприятий</div>
-      <div class="heading-small" >
+      <div class="heading-small">
         2025 год <span class="underline decoration-wavy decoration-purple-600">вместе</span> с клубом 4CIO
       </div>
     </div>
@@ -15,41 +17,42 @@
 
     <div v-if="formSubmitted" class="success-block">
       <div class="flex flex-col items-center justify-center text-center">
-          <img alt="" :src="test" class="w-[96px] h-[96px]"  />
-          <span class="first-success-block">В ближайшее время вы получите план мероприятий на указанную почту</span>
+        <img alt="" :src="test" class="w-[96px] h-[96px]"/>
+        <span class="first-success-block">В ближайшее время вы получите план мероприятий на указанную почту</span>
 
 
       </div>
     </div>
 
 
-    <form v-else @submit.prevent="submitForm" class="w-full max-w-[574px]">
+    <form v-else @submit.prevent="submitForm" class="main-form ">
       <div class="form-container">
 
         <div v-for="(field, index) in fields" :key="index" class="text-left">
           <div class="input-block">
-          <label :for="field.id" class="label">{{ field.label }}</label>
-          <input
-              :id="field.id"
-              v-model="formData[field.model]"
-              :type="field.type"
-              :placeholder="field.placeholder"
-              :class="{ 'input-error': errors[field.model] }"
-              required
-              class="input"
-          />
+            <label :for="field.id" class="label">{{ field.label }}</label>
+            <input
+                :id="field.id"
+                v-model="formData[field.model]"
+                :type="field.type"
+                :placeholder="field.placeholder"
+                :class="{ 'input-error': errors[field.model] }"
+                required
+                class="input"
+            />
           </div>
           <div v-if="errors[field.model]" class="error-text">{{ errors[field.model] }}</div>
         </div>
       </div>
 
 
-      <div>
+      <div class="button-container">
         <button type="submit" class="submit-button" :disabled="loading">
           {{ loading ? "Отправка..." : "Получить план" }}
         </button>
         <div class="agreement-text">
-          Нажимая на кнопку, вы соглашаетесь на обработку своих <span class="underline">персональных данных</span>.
+          Нажимая на кнопку, вы соглашаетесь на обработку своих <a href="https://4cio.ru/policy" target="_blank"
+                                                                   class="underline">персональных данных</a>.
         </div>
       </div>
     </form>
@@ -92,11 +95,11 @@ const textSizeClass = computed(() => {
 
 
 const fields = [
-  { id: "first_name", model: "first_name", label: "Имя", type: "text", placeholder: "Иван" },
-  { id: "last_name", model: "last_name", label: "Фамилия", type: "text", placeholder: "Иванов" },
-  { id: "company", model: "company", label: "Компания", type: "text", placeholder: "Технология" },
-  { id: "jobtitle", model: "jobtitle", label: "Должность", type: "text", placeholder: "Директор по развитию" },
-  { id: "email", model: "email", label: "E-mail", type: "email", placeholder: "mail@example.ru" },
+  {id: "first_name", model: "first_name", label: "Имя", type: "text", placeholder: "Иван"},
+  {id: "last_name", model: "last_name", label: "Фамилия", type: "text", placeholder: "Иванов"},
+  {id: "company", model: "company", label: "Компания", type: "text", placeholder: "Технология"},
+  {id: "jobtitle", model: "jobtitle", label: "Должность", type: "text", placeholder: "Директор по развитию"},
+  {id: "email", model: "email", label: "E-mail", type: "email", placeholder: "mail@example.ru"},
 ];
 
 const submitForm = async () => {
@@ -108,7 +111,7 @@ const submitForm = async () => {
     const response = await axios.post(apiServer, formData.value);
     if (response.status === 200) {
       console.log("Успешно отправлено:", formData.value);
-      formSubmitted.value = true;
+      // formSubmitted.value = true;
     }
   } catch (error) {
     formSubmitted.value = true;
@@ -137,17 +140,32 @@ const mapValidationErrors = (validationErrors) => {
 </script>
 
 <style scoped>
-.success-block{
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.main-form {
+  width: 100%;
+  max-width: 574px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.success-block {
+  line-height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 100vh;
+  height: 70vh;
   width: 100%;
 }
-.first-success-block{
-font-size:64px ;
-  font-weight: 500;
+.first-success-block {
+  letter-spacing: -3px;
+  font-size: 64px;
+  font-weight: bold;
 }
 
 .main-container {
@@ -160,6 +178,8 @@ font-size:64px ;
 }
 
 .error-block {
+  top: 150px;
+  position: absolute;
   font-size: 16px;
   line-height: 22px;
   padding: 16px;
@@ -168,61 +188,73 @@ font-size:64px ;
   margin: 0 auto;
   background-color: #FFF0F0;
   border-radius: 24px;
-
 }
 
 
 .text-block {
-margin-bottom: 5%;
-
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  margin-bottom: 102px;
 }
+
 .heading-large {
+  letter-spacing: -3px;
   font-size: 64px;
-  font-weight: 500;
   line-height: 64px;
   text-wrap: nowrap;
   text-align: center;
-  margin-bottom: 12px;
 }
 
 .heading-small {
-
   font-size: 28px;
-  font-weight: 500;
   line-height: 30px;
   text-align: center;
 }
 
 .form-container {
   width: 100%;
-  max-height: 435px;
+  height: 435px;
   padding: 16px;
   background-color: #ede9fe;
   border-radius: 24px;
   display: flex;
+  gap: 8px;
   flex-direction: column;
 
 }
-.input-block{
-  margin-bottom: 8px;
+.input {
+  border: none;
+  padding: 12px 16px 12px 16px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
 }
+.input:focus-visible {
+  outline: 2px solid #8453D4
+}
+.input:hover {
+
+}
+input:valid {
+  background: #FFFFFF;
+
+}
+.input-invalid {
+  border: 2px solid #DF070B
+}
+
 .label {
   font-size: 16px;
   font-weight: 400;
   color: #4f4a5a;
 }
 
-.input {
-  border: 1px solid #ccc;
-  padding: 12px 16px 12px 16px;
-  border-radius: 8px;
-  width: 100%;
-  font-size: 16px;
-  height: 1%;
-}
+
 
 .submit-button {
-  margin-top: 1rem;
+
   color: #fff;
   font-size: 18px;
   font-weight: 600;
@@ -233,39 +265,45 @@ margin-bottom: 5%;
   background: linear-gradient(90deg, #8453D4 0%, #8656D5 20%, #8657D6 40%, #8B61D9 60%, #8F68DC 80%, #9472E0 100%);
 
 }
-.submit-button:hover{
-    background: #9472E0;
+
+.submit-button:hover {
+  background: #9472E0;
 }
 
 .agreement-text {
   font-size: 0.875rem;
-  color: #4b5563;
+  color: #938EA2;
   text-align: left;
-  margin-top: 0.5rem;
+
 }
 
 @media (max-width: 768px) {
-  .first-success-block{
-    font-size:44px ;
+  .first-success-block {
+    font-size: 44px;
     font-weight: 500;
   }
-  .second-success-block{
-    font-size:44px ;
+
+  .second-success-block {
+    font-size: 44px;
     font-weight: 500;
   }
-  .third-success-block{
+
+  .third-success-block {
     font-size: 16px;
     font-weight: 400;
   }
+
   .heading-large {
     font-size: 44px;
     line-height: 44px;
     margin-bottom: 8px;
   }
+
   .heading-small {
     font-size: 18px;
     line-height: 21px;
   }
+
   .form-container {
     padding: 0.75rem;
   }
@@ -281,28 +319,34 @@ margin-bottom: 5%;
 }
 
 @media (max-width: 480px) {
-  .first-success-block{
-    font-size:32px ;
+  .first-success-block {
+    font-size: 32px;
     font-weight: 500;
   }
-  .second-success-block{
-    font-size:32px ;
+
+  .second-success-block {
+    font-size: 32px;
     font-weight: 500;
   }
-  .third-success-block{
+
+  .third-success-block {
     font-size: 16px;
     font-weight: 400;
   }
+
   .heading-large {
     font-size: 32px;
     line-height: 35px;
   }
+
   .heading-small {
     font-size: 16px;
   }
+
   .error-block {
     text-wrap: auto;
   }
+
   .form-container {
     padding: 0.5rem;
     gap: 0.75rem;

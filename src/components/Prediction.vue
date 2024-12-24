@@ -1,15 +1,15 @@
 <template>
   <div class="flex flex-col items-center  text-center ">
-    <div>
-      <div class="font-[500] leading-[64px] text-nowrap mb-[12px]" :class="textSizeClass">
+    <div class="main-text">
+      <div class="leading-[64px] text-nowrap tracking-[-3px]" :class="textSizeClass">
         Шар предсказаний
       </div>
-      <div class="font-[500] leading-[30px] text-nowrap " :class="subTextSizeClass">
+      <div class="leading-[30px] text-nowrap " :class="subTextSizeClass">
         Какой ваш <span class="underline decoration-wavy decoration-purple-600">новый</span> 2025 год?
       </div>
     </div>
     <Sphere
-        class="m-auto transition-all duration-500 ease-in-out cursor-pointer"
+        class="sphere transition-all duration-500 ease-in-out cursor-pointer"
         :style="sphereStyle"
         @click="getRandomPrediction"
     ></Sphere>
@@ -17,7 +17,7 @@
 
     <div>
       <transition name="fade" appear>
-        <div class="absolute top-[23%] -right-[50%]" v-if="!hasClicked && isDesktop">
+        <div class="bubble-message" v-if="!hasClicked && windowWidth>1100">
           <svg width="310" height="68" viewBox="0 0 330 68" fill="none" xmlns="http://www.w3.org/2000/svg">
 
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -39,8 +39,8 @@
 
       <transition name="fade" appear>
         <div
-            class="absolute top-[102%] -right-[0%] "
-            v-if="!hasClicked && (isMobile || isTablet)"
+            class="bubble-message"
+            v-if="!hasClicked && (windowWidth<=1100)"
         >
           <svg
               :width="isMobile ? 273 : 324"
@@ -49,9 +49,8 @@
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
           >
-            <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M16 0C7.16344 0 0 7.16344 0 16V50C0 58.8366 7.16345 66 16 66H304C307.418 66 310.585 64.9283 313.185 63.1026C313.217 63.1626 313.262 63.2161 313.32 63.2583C316.375 65.5001 320.599 65.9275 323.507 65.9998C323.94 66.0106 324.16 65.4703 323.865 65.1438C321.805 62.8634 320.553 60.762 319.814 58.5359V52.4462C319.937 51.6487 320 50.8318 320 50V16C320 7.16344 312.837 0 304 0H16Z"
-                  fill="#EFECFB"/>
+            <path  clip-rule="evenodd" d="M16 0C7.16344 0 0 7.16344 0 16V50C0 58.8366 7.16345 66 16 66H304C307.418 66 310.585 64.9283 313.185 63.1026C313.217 63.1626 313.262 63.2161 313.32 63.2583C316.375 65.5001 320.599 65.9275 323.507 65.9998C323.94 66.0106 324.16 65.4703 323.865 65.1438C321.805 62.8634 320.553 60.762 319.814 58.5359V52.4462C319.937 51.6487 320 50.8318 320 50V16C320 7.16344 312.837 0 304 0H16Z" fill="#EFECFB"
+                  />
             <text x="20" y="30" font-family="Roboto, sans-serif" font-size="16px" fill="#000">
               <tspan x="20" dy="0">А вам уже повезло! План мероприятий</tspan>
               <tspan x="20" dy="20">Клуба 4CIO на следующий год <a class="underline">уже тут</a></tspan>
@@ -63,7 +62,7 @@
     </div>
 
     <transition name="slide-fade">
-      <div v-show="!isLoading && selectedPrediction" class="relative mt-[8px]">
+      <div v-show="!isLoading && selectedPrediction" class="relative ">
 
         <div
             class="absolute bg-violet-200 rounded-2xl -top-4 left-1/2 transform -translate-x-1/2 z-0"
@@ -82,8 +81,8 @@
 
     <button
         @click="getRandomPrediction"
-        class="button-prediction rounded-2xl text-white bg-violet-500 font-bold flex items-center justify-center  h-[56px] mx-[5%]"
-        :class="buttonClass"
+        class="button-prediction rounded-2xl text-white bg-violet-500 font-bold flex items-center justify-center transition-all duration-500 ease-in-out"
+        :style="buttonClass"
     >
       <div v-if="isLoading">
         <img :src="loadingGif" class="w-[24px] mr-[3px]" alt="Загрузка..."/>
@@ -104,9 +103,9 @@ window.addEventListener('resize', () => {
   windowWidth.value = window.innerWidth;
 });
 
-const isMobile = computed(() => windowWidth.value <= 550);
-const isTablet = computed(() => windowWidth.value > 550 && windowWidth.value <= 1200);
-const isDesktop = computed(() => windowWidth.value > 1200);
+const isMobile = computed(() => windowWidth.value <= 500);
+const isTablet = computed(() => windowWidth.value > 500 && windowWidth.value < 1024);
+const isDesktop = computed(() => windowWidth.value >= 1024);
 
 const textSizeClass = computed(() => {
   if (isMobile.value) return 'text-[32px]';
@@ -132,11 +131,7 @@ const predictionTextClass = computed(() => {
   return 'w-[574px] h-[15vh] text-[16px]';
 });
 
-const buttonClass = computed(() => {
-  if (isMobile.value) return 'w-[100%]';
-  if (isTablet.value) return 'w-[548px]';
-  return 'w-[574px]';
-});
+
 
 const predictions = [
   '2025 год принесёт множество возможностей для реализации ИИ-проектов. Вы будете погружены в новые технологии и инновационные проекты.',
@@ -180,8 +175,7 @@ const selectedPrediction = ref('');
 const isLoading = ref(false);
 const hasClicked = ref(false);
 
-const sphereStyle = computed(() => {
-
+const buttonClass = computed(() => {
   if (isMobile.value) {
     if (isLoading.value) {
       return {width: '260px', height: '260px'};
@@ -192,7 +186,40 @@ const sphereStyle = computed(() => {
   }
   if (isTablet.value) {
     if (isLoading.value) {
-      return {width: '508px', height: 'auto'};
+      return {width: '508px', height: '56px'};
+    }
+    if (hasClicked.value) {
+      return {width: '328px', height: '56px'};
+    }
+  }
+  if (isDesktop.value) {
+    if (isLoading.value) {
+      return {width: '574px', height: '56px'};
+    }
+    if (hasClicked.value) {
+      return {width: '574px', height: '56px'};
+    }
+    if(!isLoading.value&&!hasClicked.value){
+      return {width: '400px', height: '56px'};
+    }
+  }
+  return {
+    width: isMobile.value ? '40vh' : isTablet.value ? '574px' : '574px',
+    height: isMobile.value ? '40vh' : isTablet.value ? '56px' : '56px',
+  };
+});
+const sphereStyle = computed(() => {
+  if (isMobile.value) {
+    if (isLoading.value) {
+      return {width: '260px', height: '260px'};
+    }
+    if (hasClicked.value) {
+      return {width: '300px', height: '300px'};
+    }
+  }
+  if (isTablet.value) {
+    if (isLoading.value) {
+      return {width: '400px', height: 'auto'};
     }
     if (hasClicked.value) {
       return {width: '328px', height: 'auto'};
@@ -200,15 +227,15 @@ const sphereStyle = computed(() => {
   }
   if (isDesktop.value) {
     if (isLoading.value) {
-      return {width: '60vh', height: 'auto'};
+      return {width: '400px', height: 'auto'};
     }
     if (hasClicked.value) {
       return {width: '328px', height: 'auto'};
     }
   }
   return {
-    width: isMobile.value ? '40vh' : isTablet.value ? '508px' : '60vh',
-    height: isMobile.value ? '40vh' : isTablet.value ? '508px' : '60vh'
+    width: isMobile.value ? '40vh' : isTablet.value ? '400px' : '400px',
+    height: 'auto'
   };
 });
 
@@ -228,9 +255,43 @@ const getRandomPrediction = () => {
 </script>
 
 <style scoped>
+@media (min-width: 1101px) {
+  .bubble-message{
+    position: absolute;
+    top:23%;
+    left:90%;
+  }
+}
+@media (min-width: 501px) and (max-width: 1100px) {
+  .bubble-message{
+    position: absolute;
+    top:105%;
+    left:56%;
+  }
+}
+@media (max-width: 500px) {
+  .bubble-message{
+    position: absolute;
+    top:25%;
+    left:50%;
+  }
+}
+.sphere {
+  width: 27vw;
+  margin-bottom: 40px;
+
+}
+
+.main-text {
+
+  font-weight: bold;
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
 
 .button-prediction {
-  background: linear-gradient(90deg, #8453D4 0%, #8656D5 20%, #8657D6 40%, #8B61D9 60%, #8F68DC 80%, #9472E0 100%);
 
 }
 

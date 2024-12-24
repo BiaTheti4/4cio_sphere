@@ -2,7 +2,7 @@
   <div>
 
     <div
-        class="flex items-center justify-start p-1 rounded-full  mx-auto bg-violet-100"
+        class="flex items-center justify-start p-1 mb-[32px] rounded-full  mx-auto bg-violet-100"
         :class="{
         'w-[456px] h-[62px]': !isMobile,
         'w-full h-[50px]': isMobile,
