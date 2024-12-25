@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col items-center  text-center ">
     <div class="main-text">
-      <div class="leading-[64px] text-nowrap tracking-[-3px]" :class="textSizeClass">
+      <div class="first-text" :class="textSizeClass">
         Шар предсказаний
       </div>
-      <div class="leading-[30px] text-nowrap " :class="subTextSizeClass">
+      <div class="second-text " :class="subTextSizeClass">
         Какой ваш <span class="underline decoration-wavy decoration-purple-600">новый</span> 2025 год?
       </div>
     </div>
@@ -103,8 +103,8 @@ window.addEventListener('resize', () => {
   windowWidth.value = window.innerWidth;
 });
 
-const isMobile = computed(() => windowWidth.value <= 500);
-const isTablet = computed(() => windowWidth.value > 500 && windowWidth.value < 1024);
+const isMobile = computed(() => windowWidth.value <= 510);
+const isTablet = computed(() => windowWidth.value > 510 && windowWidth.value < 1100);
 const isDesktop = computed(() => windowWidth.value >= 1024);
 
 const textSizeClass = computed(() => {
@@ -121,13 +121,13 @@ const subTextSizeClass = computed(() => {
 
 const predictionBoxClass = computed(() => {
   if (isMobile.value) return 'w-[90%] h-[100%]';
-  if (isTablet.value) return 'w-[516px] h-[100%]';
+  if (isTablet.value) return 'w-[440px] h-[100%]';
   return 'w-[542px] h-[15vh]';
 });
 
 const predictionTextClass = computed(() => {
   if (isMobile.value) return 'w-[100%] h-auto text-[14px]';
-  if (isTablet.value) return 'w-[548px] h-auto text-[16px]';
+  if (isTablet.value) return 'w-[456px] h-auto text-[16px]';
   return 'w-[574px] h-[15vh] text-[16px]';
 });
 
@@ -186,10 +186,13 @@ const buttonClass = computed(() => {
   }
   if (isTablet.value) {
     if (isLoading.value) {
-      return {width: '508px', height: '56px'};
+      return {width: '456px', height: '56px'};
+    }
+    if(!isLoading.value&&!hasClicked.value){
+      return {width: '328px', height: '56px'};
     }
     if (hasClicked.value) {
-      return {width: '328px', height: '56px'};
+      return {width: '456px', height: '56px'};
     }
   }
   if (isDesktop.value) {
@@ -204,22 +207,22 @@ const buttonClass = computed(() => {
     }
   }
   return {
-    width: isMobile.value ? '40vh' : isTablet.value ? '574px' : '574px',
-    height: isMobile.value ? '40vh' : isTablet.value ? '56px' : '56px',
+    width: isMobile.value ? '100%' : isTablet.value ? '574px' : '574px',
+    height: isMobile.value ? '56px' : isTablet.value ? '56px' : '56px',
   };
 });
 const sphereStyle = computed(() => {
   if (isMobile.value) {
     if (isLoading.value) {
-      return {width: '260px', height: '260px'};
+      return {width: '300px', height: '300px'};
     }
     if (hasClicked.value) {
-      return {width: '300px', height: '300px'};
+      return {width: '260px', height: '260px'};
     }
   }
   if (isTablet.value) {
     if (isLoading.value) {
-      return {width: '400px', height: 'auto'};
+      return {width: '508px', height: 'auto'};
     }
     if (hasClicked.value) {
       return {width: '328px', height: 'auto'};
@@ -227,14 +230,14 @@ const sphereStyle = computed(() => {
   }
   if (isDesktop.value) {
     if (isLoading.value) {
-      return {width: '400px', height: 'auto'};
+      return {width: '574px', height: 'auto'};
     }
     if (hasClicked.value) {
       return {width: '328px', height: 'auto'};
     }
   }
   return {
-    width: isMobile.value ? '40vh' : isTablet.value ? '400px' : '400px',
+    width: isMobile.value ? '328px' : isTablet.value ? '508px' : '574px',
     height: 'auto'
   };
 });
@@ -247,7 +250,7 @@ const getRandomPrediction = () => {
       const randomIndex = Math.floor(Math.random() * predictions.length);
       selectedPrediction.value = predictions[randomIndex];
       isLoading.value = false;
-    }, 2000);
+    }, 3000);
   } else {
     return 0
   }
@@ -262,33 +265,50 @@ const getRandomPrediction = () => {
     left:90%;
   }
 }
-@media (min-width: 501px) and (max-width: 1100px) {
+@media (min-width: 511px) and (max-width: 1100px) {
   .bubble-message{
     position: absolute;
     top:105%;
-    left:56%;
+    right: 0;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 510px) {
   .bubble-message{
     position: absolute;
-    top:25%;
-    left:50%;
+    bottom:-12%;
+    right: 0;
   }
 }
 .sphere {
   width: 27vw;
   margin-bottom: 40px;
-
 }
 
 .main-text {
-
   font-weight: bold;
   gap: 12px;
   display: flex;
   flex-direction: column;
   margin-bottom: 32px;
+}
+@media screen and (max-width: 1024px) {
+  .first-text{
+    letter-spacing: -3px;
+    text-wrap: nowrap;
+    line-height: 44px;
+  }
+  .second-text{
+    line-height: 30px;
+    text-wrap: nowrap;
+
+  }
+  .main-text {
+    font-weight: bold;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
 }
 
 .button-prediction {
