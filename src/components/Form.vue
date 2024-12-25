@@ -10,19 +10,20 @@
     </div>
 
 
-    <div v-if="submitError" class="error-block text-red-700">
+    <div v-if="submitError && !isMobile" class="error-block text-red-700">
       При отправке формы произошла ошибка. Попробуйте снова
     </div>
 
-
+    <div v-if="isMobile&&submitError" class="error-block-mobile text-red-700">
+      При отправке формы произошла ошибка. Попробуйте снова
+    </div>
     <div v-if="formSubmitted" class="success-block">
       <div class="flex flex-col items-center justify-center text-center">
         <img alt="" :src="test" class="w-[96px] h-[96px]"/>
         <span class="first-success-block">В ближайшее время вы получите план мероприятий на указанную почту</span>
-
-
       </div>
     </div>
+
 
 
     <form v-else @submit.prevent="submitForm" class="main-form ">
@@ -79,8 +80,8 @@ const windowWidth = ref(window.innerWidth);
 window.addEventListener('resize', () => {
   windowWidth.value = window.innerWidth;
 });
-const isMobile = computed(() => windowWidth.value <= 550);
-const isTablet = computed(() => windowWidth.value > 550 && windowWidth.value <= 1200);
+const isMobile = computed(() => windowWidth.value <= 450);
+const isTablet = computed(() => windowWidth.value > 450 && windowWidth.value <= 1200);
 const isDesktop = computed(() => windowWidth.value > 1200);
 
 const errors = ref({});
@@ -114,8 +115,8 @@ const submitForm = async () => {
       // formSubmitted.value = true;
     }
   } catch (error) {
-    formSubmitted.value = true;
-    // submitError.value = true;
+    // formSubmitted.value = true;
+    submitError.value = true;
 
     if (error.response && error.response.status === 422) {
       const validationErrors = error.response.data.errors || {};
@@ -148,11 +149,12 @@ const mapValidationErrors = (validationErrors) => {
 
 .main-form {
   width: 100%;
-  max-width: 574px;
+
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 .success-block {
   line-height: 60px;
   display: flex;
@@ -162,6 +164,7 @@ const mapValidationErrors = (validationErrors) => {
   height: 70vh;
   width: 100%;
 }
+
 .first-success-block {
   letter-spacing: -3px;
   font-size: 64px;
@@ -176,7 +179,17 @@ const mapValidationErrors = (validationErrors) => {
   align-items: center;
   width: 100%;
 }
-
+.error-block-mobile{
+  font-size: 16px;
+  line-height: 22px;
+  padding: 16px;
+  text-wrap: auto;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #FFF0F0;
+  border-radius: 24px;
+  margin-bottom: 8px;
+}
 .error-block {
   top: 150px;
   position: absolute;
@@ -190,6 +203,14 @@ const mapValidationErrors = (validationErrors) => {
   border-radius: 24px;
 }
 
+@media screen and (max-width: 550px) {
+  .error-block {
+    text-wrap: auto;
+    top: 95px;
+  }
+
+}
+
 
 .text-block {
   gap: 12px;
@@ -198,7 +219,20 @@ const mapValidationErrors = (validationErrors) => {
   font-weight: bold;
   margin-bottom: 102px;
 }
-
+@media screen and (max-width: 550px) {
+  .text-block {
+    gap: 8px;
+    font-weight: bold;
+    margin-bottom: 32px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .text-block {
+    gap: 8px;
+    font-weight: bold;
+    margin-bottom: 32px;
+  }
+}
 .heading-large {
   letter-spacing: -3px;
   font-size: 64px;
@@ -224,23 +258,29 @@ const mapValidationErrors = (validationErrors) => {
   flex-direction: column;
 
 }
+
 .input {
   border: none;
   padding: 12px 16px 12px 16px;
   border-radius: 8px;
   width: 100%;
   font-size: 16px;
+  height: 44px;
 }
+
 .input:focus-visible {
   outline: 2px solid #8453D4
 }
+
 .input:hover {
 
 }
+
 input:valid {
   background: #FFFFFF;
 
 }
+
 .input-invalid {
   border: 2px solid #DF070B
 }
@@ -250,7 +290,6 @@ input:valid {
   font-weight: 400;
   color: #4f4a5a;
 }
-
 
 
 .submit-button {
@@ -263,7 +302,6 @@ input:valid {
   border-radius: 16px;
   width: 100%;
   background: linear-gradient(90deg, #8453D4 0%, #8656D5 20%, #8657D6 40%, #8B61D9 60%, #8F68DC 80%, #9472E0 100%);
-
 }
 
 .submit-button:hover {
@@ -274,13 +312,16 @@ input:valid {
   font-size: 0.875rem;
   color: #938EA2;
   text-align: left;
-
 }
 
 @media (max-width: 768px) {
   .first-success-block {
     font-size: 44px;
     font-weight: 500;
+  }
+
+  .error-block {
+    top: 125px;
   }
 
   .second-success-block {
@@ -296,7 +337,7 @@ input:valid {
   .heading-large {
     font-size: 44px;
     line-height: 44px;
-    margin-bottom: 8px;
+
   }
 
   .heading-small {
@@ -343,13 +384,11 @@ input:valid {
     font-size: 16px;
   }
 
-  .error-block {
-    text-wrap: auto;
-  }
 
   .form-container {
     padding: 0.5rem;
     gap: 0.75rem;
+    height: 410px;
   }
 
   .label {

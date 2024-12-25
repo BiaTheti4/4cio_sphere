@@ -68,8 +68,6 @@
             class="absolute bg-violet-200 rounded-2xl -top-4 left-1/2 transform -translate-x-1/2 z-0"
             :class="predictionBoxClass"
         ></div>
-
-
         <div
             class="relative bg-violet-100 rounded-2xl flex items-center justify-center text-black z-10 mb-[8px] p-[2%]"
             :class="predictionTextClass"
@@ -178,10 +176,10 @@ const hasClicked = ref(false);
 const buttonClass = computed(() => {
   if (isMobile.value) {
     if (isLoading.value) {
-      return {width: '260px', height: '260px'};
+      return {width: '100%', height: '56px'};
     }
     if (hasClicked.value) {
-      return {width: '300px', height: '300px'};
+      return {width: '100%', height: '56px'};
     }
   }
   if (isTablet.value) {
@@ -275,7 +273,7 @@ const getRandomPrediction = () => {
 @media (max-width: 510px) {
   .bubble-message{
     position: absolute;
-    bottom:-12%;
+    bottom:-11%;
     right: 0;
   }
 }
@@ -310,7 +308,25 @@ const getRandomPrediction = () => {
     margin-bottom: 32px;
   }
 }
+@media screen and (max-width: 550px) {
+  .first-text{
+    letter-spacing: -3px;
+    text-wrap: nowrap;
+    line-height: 35px;
+  }
+  .second-text{
+    line-height: 19px;
+    text-wrap: nowrap;
 
+  }
+  .main-text {
+    font-weight: bold;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+}
 .button-prediction {
 
 }

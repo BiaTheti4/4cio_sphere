@@ -2,7 +2,7 @@
   <div>
 
     <div
-        class="flex items-center justify-start p-1 mb-[32px] rounded-full  mx-auto bg-violet-100"
+        class="toggle-main"
         :class="{
         'w-[456px] h-[62px]': !isMobile,
         'w-full h-[50px]': isMobile,
@@ -80,6 +80,24 @@ const buttonClass = (isActive) => [
 </script>
 
 <style scoped>
+.toggle-main {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 4px;
+  margin-bottom: 32px;
+  border-radius: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #EFECFB;
+}
+
+@media screen and (max-width: 550px) {
+  .toggle-main {
+    margin-bottom: 24px;
+  }
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;

@@ -17,7 +17,7 @@ const isMetrics = +import.meta.env.VITE_IS_METRICS;
 <template>
   <div class="flex flex-col min-h-screen overflow-hidden h-screen my-12px justify-between">
     <div class="home-container">
-      <Toggle class="toggle-responsive pt-[13px]" />
+      <Toggle class="toggle-responsive " />
     </div>
 
     <footer class="main-footer">
@@ -46,12 +46,17 @@ const isMetrics = +import.meta.env.VITE_IS_METRICS;
 </template>
 
 <style scoped>
-.main-footer{
 
+.main-footer{
   display: flex;
   justify-content: center;
   width: 100%;
   height: 80px;
+}
+@media screen and (max-width: 550px) {
+  .main-footer{
+    display: none;
+  }
 }
 
 .home-container{
@@ -62,13 +67,18 @@ flex-grow: 1;
   justify-content: flex-start;
   width: 100%;
 }
-.toggle-responsive{
-
+@media screen and (max-width: 768px) {
+  .toggle-responsive{
+    width: 100%;
+    padding: 12px 40px;
+  }
 }
+
 @media (max-width: 550px) {
   .toggle-responsive {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
+    padding: 12px 16px;
   }
 }
 </style>
