@@ -67,6 +67,10 @@ flex-grow: 1;
   justify-content: flex-start;
   width: 100%;
 }
+.toggle-responsive{
+  width: 456px;
+  padding-top: 12px;
+}
 @media screen and (max-width: 768px) {
   .toggle-responsive{
     width: 100%;
