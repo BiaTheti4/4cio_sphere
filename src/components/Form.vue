@@ -111,7 +111,8 @@ const submitForm = async () => {
     const response = await axios.post(apiServer, formData.value);
     if (response.status === 200) {
       console.log("Успешно отправлено:", formData.value);
-      formSubmitted.value = true;
+      // formSubmitted.value = true;
+      submitError.value = true;
     }
   } catch (error) {
     // formSubmitted.value = true;
@@ -147,6 +148,7 @@ const mapValidationErrors = (validationErrors) => {
   display: flex;
   flex-direction: column;
 }
+
 .button-container {
   display: flex;
   flex-direction: column;
@@ -170,11 +172,7 @@ const mapValidationErrors = (validationErrors) => {
   width: 800px;
 }
 
-@media  screen and (min-width: 1300px) and (max-width: 1500px) and (min-height: 800px) and (max-height: 900px) {
-.text-block{
-  margin-bottom: 50px;
-}
-}
+
 
 @media screen and (max-width: 820px) {
   .success-block {
@@ -236,154 +234,176 @@ const mapValidationErrors = (validationErrors) => {
   }
 }
 
+.heading-large {
+  letter-spacing: -3px;
+  font-size: 64px;
+  line-height: 64px;
+  text-wrap: nowrap;
+  text-align: center;
+}
+
+.heading-small {
+  font-size: 28px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.form-container {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  background-color: #ede9fe;
+  border-radius: 24px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+
+}
+@media screen and (min-width: 1300px) and (max-width: 1500px) and (min-height: 770px) and (max-height: 900px) {
+  .text-block {
+    margin-bottom: 70px;
+    gap: 0;
+  }
+
   .heading-large {
-    letter-spacing: -3px;
-    font-size: 64px;
-    line-height: 64px;
-    text-wrap: nowrap;
-    text-align: center;
+    font-size: 48px;
   }
 
   .heading-small {
-    font-size: 28px;
-    line-height: 30px;
-    text-align: center;
+    font-size: 24px;
+  }
+  .error-block{
+top:106px
+  }
+}
+.input {
+  border: none;
+  padding: 12px 16px 12px 16px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  height: 44px;
+}
+
+.input:focus-visible {
+  outline: 2px solid #8453D4
+}
+
+.input:hover {
+
+}
+
+input:valid {
+  background: #FFFFFF;
+
+}
+
+.input-invalid {
+  border: 2px solid #DF070B
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 400;
+  color: #4f4a5a;
+}
+
+
+.submit-button {
+
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  height: 56px;
+  line-height: 21px;
+  border-radius: 16px;
+  width: 100%;
+  background: linear-gradient(90deg, #8453D4 0%, #8656D5 20%, #8657D6 40%, #8B61D9 60%, #8F68DC 80%, #9472E0 100%);
+}
+
+.submit-button:hover {
+  background: #9472E0;
+}
+
+.agreement-text {
+  font-size: 0.875rem;
+  color: #938EA2;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .first-success-block {
+    font-size: 44px;
+    font-weight: bold;
+  }
+
+  .text-block {
+    gap: 8px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .error-block {
+    top: 125px;
+    font-size: 14px;
+  }
+
+  .second-success-block {
+    font-size: 44px;
+    font-weight: 500;
+  }
+
+  .third-success-block {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .main-container {
+    position: relative;
+  }
+
+  .heading-large {
+    font-size: 44px;
+    line-height: 44px;
+
+  }
+
+  .heading-small {
+    font-size: 18px;
+    line-height: 21px;
   }
 
   .form-container {
-    width: 100%;
-    height: 100%;
-    padding: 16px;
-    background-color: #ede9fe;
-    border-radius: 24px;
-    display: flex;
-    gap: 8px;
-    flex-direction: column;
-
+    padding: 0.75rem;
   }
-
-  .input {
-    border: none;
-    padding: 12px 16px 12px 16px;
-    border-radius: 8px;
-    width: 100%;
-    font-size: 16px;
-    height: 44px;
-  }
-
-  .input:focus-visible {
-    outline: 2px solid #8453D4
-  }
-
-  .input:hover {
-
-  }
-
-  input:valid {
-    background: #FFFFFF;
-
-  }
-
-  .input-invalid {
-    border: 2px solid #DF070B
-  }
-
-  .label {
-    font-size: 16px;
-    font-weight: 400;
-    color: #4f4a5a;
-  }
-
 
   .submit-button {
-
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    height: 56px;
-    line-height: 21px;
-    border-radius: 16px;
-    width: 100%;
-    background: linear-gradient(90deg, #8453D4 0%, #8656D5 20%, #8657D6 40%, #8B61D9 60%, #8F68DC 80%, #9472E0 100%);
-  }
-
-  .submit-button:hover {
-    background: #9472E0;
+    height: 3rem;
+    font-size: 1rem;
   }
 
   .agreement-text {
-    font-size: 0.875rem;
-    color: #938EA2;
-    text-align: left;
+    font-size: 0.75rem;
   }
-
-  @media (max-width: 768px) {
-    .first-success-block {
-      font-size: 44px;
-      font-weight: bold;
-    }
-    .text-block {
-      gap: 8px;
-      font-weight: bold;
-      margin-bottom: 30px;
-      display: flex;
-      flex-direction: column;
-    }
-    .error-block {
-      top: 125px;
-      font-size: 14px;
-    }
-
-    .second-success-block {
-      font-size: 44px;
-      font-weight: 500;
-    }
-
-    .third-success-block {
-      font-size: 16px;
-      font-weight: 400;
-    }
-.main-container{
-  position: relative;
 }
-    .heading-large {
-      font-size: 44px;
-      line-height: 44px;
 
-    }
+@media (max-width: 400px) {
+  .heading-large {
+    font-size: 36px;
+    line-height: 44px;
 
-    .heading-small {
-      font-size: 18px;
-      line-height: 21px;
-    }
-
-    .form-container {
-      padding: 0.75rem;
-    }
-
-    .submit-button {
-      height: 3rem;
-      font-size: 1rem;
-    }
-
-    .agreement-text {
-      font-size: 0.75rem;
-    }
   }
 
-  @media (max-width: 400px) {
-    .heading-large {
-      font-size: 36px;
-      line-height: 44px;
-
-    }
-    .text-block {
-      margin-bottom: 5px;
-    }
-    .heading-small {
-      font-size: 18px;
-      line-height: 21px;
-    }
+  .text-block {
+    margin-bottom: 5px;
   }
+
+  .heading-small {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
 
 </style>

@@ -6,6 +6,7 @@
         'w-[456px] h-[62px]': !isMobile,
         'w-full h-[50px]': isMobile,
       }"
+
     >
       <button
           @click="isToggled = true"
@@ -40,10 +41,10 @@
           @leave="leave"
       >
         <div v-if="isToggled" key="prediction" class="">
-          <Prediction />
+          <Prediction/>
         </div>
         <div v-else key="form" class="">
-          <Form />
+          <Form/>
         </div>
       </transition>
     </div>
@@ -51,12 +52,17 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import {ref, computed, onMounted, onUnmounted} from 'vue';
 import Prediction from "@/components/Prediction.vue";
 import Form from "@/components/Form.vue";
 
 const isToggled = ref(true);
 const isMobile = ref(false);
+
+
+const params = new URLSearchParams(window.location.search);
+isToggled.value = params.get('isForm') !== '1'
+
 
 const updateResponsiveFlags = () => {
   isMobile.value = window.innerWidth <= 550;
@@ -78,29 +84,29 @@ const buttonClass = (isActive) => [
 
 // Анимационные методы
 const beforeEnter = (el) => {
-  el.style.display = 'none'; // Скрываем элемент перед анимацией
+  el.style.display = 'none';
 };
 
 const enter = (el, done) => {
-  el.style.display = ''; // Убираем display: none
-  el.offsetHeight; // Принудительное перерисовывание
-  el.style.opacity = 0; // Начальное состояние
-  el.style.transition = 'opacity 0.5s ease'; // Устанавливаем переход
+  el.style.display = '';
+  el.offsetHeight;
+  el.style.opacity = 0;
+  el.style.transition = 'opacity 0.5s ease';
   requestAnimationFrame(() => {
-    el.style.opacity = 1; // Конечное состояние
-    done(); // Завершаем анимацию
+    el.style.opacity = 1;
+    done();
   });
 };
 
 const leave = (el, done) => {
-  el.style.transition = 'opacity 0.5s ease'; // Устанавливаем переход
-  el.style.opacity = 1; // Начальное состояние
+  el.style.transition = 'opacity 0.5s ease';
+  el.style.opacity = 1;
   requestAnimationFrame(() => {
-    el.style.opacity = 0; // Конечное состояние
+    el.style.opacity = 0;
     setTimeout(() => {
-      el.style.display = 'none'; // Скрываем элемент после анимации
-      done(); // Завершаем анимацию
-    }, 500); // Должно совпадать с длительностью анимации
+      el.style.display = 'none';
+      done();
+    }, 500);
   });
 };
 </script>
@@ -118,11 +124,19 @@ const leave = (el, done) => {
   background-color: #EFECFB;
 }
 
+@media screen and (min-width: 1440px) and (max-height: 900px) {
+  .toggle-main {
+    margin-bottom: 18px;
+  }
+
+}
+
 @media screen and (max-width: 550px) {
   .toggle-main {
     margin-bottom: 24px;
   }
 }
+
 @media screen and (max-width: 768px) {
   .main-block {
     display: flex;
