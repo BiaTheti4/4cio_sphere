@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div
         class="toggle-main"
         :class="{
@@ -8,7 +7,6 @@
         'w-full h-[50px]': isMobile,
       }"
     >
-
       <button
           @click="isToggled = true"
           :class="buttonClass(isToggled)"
@@ -20,7 +18,6 @@
       >
         Предсказание
       </button>
-
 
       <button
           @click="isToggled = false"
@@ -35,14 +32,18 @@
       </button>
     </div>
 
-
-    <div class="relative">
-      <transition name="fade">
+    <div class="main-block relative">
+      <transition
+          name="fade"
+          @before-enter="beforeEnter"
+          @enter="enter"
+          @leave="leave"
+      >
         <div v-if="isToggled" key="prediction" class="">
-          <Prediction/>
+          <Prediction />
         </div>
         <div v-else key="form" class="">
-          <Form/>
+          <Form />
         </div>
       </transition>
     </div>
@@ -50,13 +51,11 @@
 </template>
 
 <script setup>
-import {ref, computed, onMounted, onUnmounted} from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import Prediction from "@/components/Prediction.vue";
 import Form from "@/components/Form.vue";
 
 const isToggled = ref(true);
-
-
 const isMobile = ref(false);
 
 const updateResponsiveFlags = () => {
@@ -72,11 +71,38 @@ onUnmounted(() => {
   window.removeEventListener('resize', updateResponsiveFlags);
 });
 
-
 const buttonClass = (isActive) => [
   'px-4 py-2 rounded-full font-semibold transition-all duration-300 ease-in-out',
   isActive ? 'bg-white text-violet-600' : 'text-black',
 ];
+
+// Анимационные методы
+const beforeEnter = (el) => {
+  el.style.display = 'none'; // Скрываем элемент перед анимацией
+};
+
+const enter = (el, done) => {
+  el.style.display = ''; // Убираем display: none
+  el.offsetHeight; // Принудительное перерисовывание
+  el.style.opacity = 0; // Начальное состояние
+  el.style.transition = 'opacity 0.5s ease'; // Устанавливаем переход
+  requestAnimationFrame(() => {
+    el.style.opacity = 1; // Конечное состояние
+    done(); // Завершаем анимацию
+  });
+};
+
+const leave = (el, done) => {
+  el.style.transition = 'opacity 0.5s ease'; // Устанавливаем переход
+  el.style.opacity = 1; // Начальное состояние
+  requestAnimationFrame(() => {
+    el.style.opacity = 0; // Конечное состояние
+    setTimeout(() => {
+      el.style.display = 'none'; // Скрываем элемент после анимации
+      done(); // Завершаем анимацию
+    }, 500); // Должно совпадать с длительностью анимации
+  });
+};
 </script>
 
 <style scoped>
@@ -97,6 +123,13 @@ const buttonClass = (isActive) => [
     margin-bottom: 24px;
   }
 }
+@media screen and (max-width: 768px) {
+  .main-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 
 .fade-enter-active,
 .fade-leave-active {
@@ -110,12 +143,4 @@ const buttonClass = (isActive) => [
   opacity: 0;
 }
 
-.fade-enter-to,
-.fade-leave-from {
-  opacity: 1;
-}
-
-button {
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-}
 </style>

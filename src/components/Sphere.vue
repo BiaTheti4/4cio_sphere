@@ -15,5 +15,6 @@ let isWebm = isAndroid || isWindows
 </template>
 
 <style scoped>
-
+.video-container{
+}
 </style>
