@@ -68,7 +68,7 @@ flex-grow: 1;
   width: 100%;
 }
 .toggle-responsive{
-  width: 456px;
+  width: 525px;
   padding-top: 12px;
 }
 @media screen and (max-width: 768px) {

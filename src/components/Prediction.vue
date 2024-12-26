@@ -114,7 +114,7 @@ const isTablet = computed(() => windowWidth.value > 510 && windowWidth.value < 1
 const isDesktop = computed(() => windowWidth.value >= 1024);
 const isMac = computed(() =>
     windowWidth.value >= 1300 && windowWidth.value <= 1500 &&
-    windowHeight.value >= 800 && windowHeight.value <= 900
+    windowHeight.value >= 770 && windowHeight.value <= 900
 );
 
 
@@ -243,13 +243,13 @@ const sphereStyle = computed(() => {
   }
   if (isDesktop.value && !isMac.value) {
     if (isLoading.value) {
-      return {width: '525px', height: 'auto'};
+      return {width: '450px', height: 'auto'};
     }
     if (hasClicked.value) {
       return {width: '328px', height: 'auto'};
     }
   }
-  if ( isMac.value) {
+  if (isMac.value) {
     if (isLoading.value && !hasClicked.value) {
       return {width: '400px', height: 'auto'};
     }
@@ -258,9 +258,9 @@ const sphereStyle = computed(() => {
     }
   }
   return {
-    width: isMobile.value ? '300px' : (isTablet.value ? '508px' : (isMac.value ? '400px' : '508px')),
+    width: isMobile.value ? '300px' : (isTablet.value ? '508px' : (isMac.value ? '400px' : '400px')),
     height: isMobile.value ? 'auto' : (isTablet.value ? 'auto' : (isMac.value ? 'auto' : '55vh')),
-    // height: isMobile.value ? 'auto' : isTablet.value ? 'auto' : '55vh'
+
   };
 });
 
