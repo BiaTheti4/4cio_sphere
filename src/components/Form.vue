@@ -111,8 +111,8 @@ const submitForm = async () => {
     const response = await axios.post(apiServer, formData.value);
     if (response.status === 200) {
       console.log("Успешно отправлено:", formData.value);
-      // formSubmitted.value = true;
-      submitError.value = true;
+      formSubmitted.value = true;
+      // submitError.value = true;
     }
   } catch (error) {
     // formSubmitted.value = true;
