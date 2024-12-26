@@ -10,6 +10,10 @@ export default defineConfig({
         vueDevTools(),
 
     ],
+    server: {
+        host: '0.0.0.0', // Это позволит слушать на всех интерфейсах
+        port: 5173, // Убедитесь, что порт совпадает с тем, который вы используете
+    },
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))

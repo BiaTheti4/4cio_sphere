@@ -256,27 +256,7 @@ const getRandomPrediction = () => {
 </script>
 
 <style scoped>
-@media (min-width: 1101px) {
-  .bubble-message{
-    position: absolute;
-    top:23%;
-    left:90%;
-  }
-}
-@media (min-width: 511px) and (max-width: 1100px) {
-  .bubble-message{
-    position: absolute;
-    top:105%;
-    right: 0;
-  }
-}
-@media (max-width: 510px) {
-  .bubble-message{
-    position: absolute;
-    bottom:-11%;
-    right: 0;
-  }
-}
+
 .sphere {
   width: 27vw;
   margin-bottom: 40px;
@@ -288,6 +268,11 @@ const getRandomPrediction = () => {
   display: flex;
   flex-direction: column;
   margin-bottom: 32px;
+}
+.first-text{
+  letter-spacing: -3px;
+  text-wrap: nowrap;
+  line-height: 44px;
 }
 @media screen and (max-width: 1024px) {
   .first-text{
@@ -364,6 +349,27 @@ const getRandomPrediction = () => {
 .fade-leave-from {
   opacity: 1;
   transform: translateY(0);
+}
+@media (min-width: 1101px) {
+  .bubble-message{
+    position: absolute;
+    top:23%;
+    left:90%;
+  }
+}
+@media (min-width: 511px) and (max-width: 1100px) {
+  .bubble-message{
+    position: absolute;
+    top:105%;
+    right: 0;
+  }
+}
+@media (max-width: 510px) {
+  .bubble-message{
+    position: absolute;
+    bottom:-11%;
+    right: 0;
+  }
 }
 </style>
 
