@@ -20,10 +20,9 @@
     <div v-if="formSubmitted" class="success-block">
       <div class="flex flex-col items-center justify-center text-center">
         <img alt="" :src="test" class="w-[96px] h-[96px]"/>
-        <span class="first-success-block">В ближайшее время вы получите план мероприятий на указанную почту</span>
+        <span class="first-success-block">В ближайшее время  вы получите план мероприятий  на указанную почту</span>
       </div>
     </div>
-
 
 
     <form v-else @submit.prevent="submitForm" class="main-form ">
@@ -141,6 +140,13 @@ const mapValidationErrors = (validationErrors) => {
 </script>
 
 <style scoped>
+.text-block {
+  gap: 8px;
+  font-weight: bold;
+  margin-bottom: 102px;
+  display: flex;
+  flex-direction: column;
+}
 .button-container {
   display: flex;
   flex-direction: column;
@@ -149,7 +155,6 @@ const mapValidationErrors = (validationErrors) => {
 
 .main-form {
   width: 100%;
-
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -162,7 +167,13 @@ const mapValidationErrors = (validationErrors) => {
   align-items: center;
   text-align: center;
   height: 70vh;
-  width: 100%;
+  width: 800px;
+}
+
+@media screen and (max-width: 820px) {
+  .success-block {
+    width: 100%;
+  }
 }
 
 .first-success-block {
@@ -179,7 +190,8 @@ const mapValidationErrors = (validationErrors) => {
   align-items: center;
   width: 100%;
 }
-.error-block-mobile{
+
+.error-block-mobile {
   font-size: 16px;
   line-height: 22px;
   padding: 16px;
@@ -190,6 +202,7 @@ const mapValidationErrors = (validationErrors) => {
   border-radius: 24px;
   margin-bottom: 8px;
 }
+
 .error-block {
   top: 150px;
   position: absolute;
@@ -207,202 +220,164 @@ const mapValidationErrors = (validationErrors) => {
   .error-block {
     text-wrap: auto;
     top: 95px;
+
   }
 
-}
-
-
-.text-block {
-  gap: 12px;
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
-  margin-bottom: 102px;
-}
-@media screen and (max-width: 550px) {
   .text-block {
     gap: 8px;
     font-weight: bold;
     margin-bottom: 32px;
   }
 }
-@media screen and (max-width: 450px) {
-  .text-block {
+
+  .heading-large {
+    letter-spacing: -3px;
+    font-size: 64px;
+    line-height: 64px;
+    text-wrap: nowrap;
+    text-align: center;
+  }
+
+  .heading-small {
+    font-size: 28px;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  .form-container {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    background-color: #ede9fe;
+    border-radius: 24px;
+    display: flex;
     gap: 8px;
-    font-weight: bold;
-    margin-bottom: 32px;
-  }
-}
-.heading-large {
-  letter-spacing: -3px;
-  font-size: 64px;
-  line-height: 64px;
-  text-wrap: nowrap;
-  text-align: center;
-}
+    flex-direction: column;
 
-.heading-small {
-  font-size: 28px;
-  line-height: 30px;
-  text-align: center;
-}
-
-.form-container {
-  width: 100%;
-  height: 435px;
-  padding: 16px;
-  background-color: #ede9fe;
-  border-radius: 24px;
-  display: flex;
-  gap: 8px;
-  flex-direction: column;
-
-}
-
-.input {
-  border: none;
-  padding: 12px 16px 12px 16px;
-  border-radius: 8px;
-  width: 100%;
-  font-size: 16px;
-  height: 44px;
-}
-
-.input:focus-visible {
-  outline: 2px solid #8453D4
-}
-
-.input:hover {
-
-}
-
-input:valid {
-  background: #FFFFFF;
-
-}
-
-.input-invalid {
-  border: 2px solid #DF070B
-}
-
-.label {
-  font-size: 16px;
-  font-weight: 400;
-  color: #4f4a5a;
-}
-
-
-.submit-button {
-
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  height: 56px;
-  line-height: 21px;
-  border-radius: 16px;
-  width: 100%;
-  background: linear-gradient(90deg, #8453D4 0%, #8656D5 20%, #8657D6 40%, #8B61D9 60%, #8F68DC 80%, #9472E0 100%);
-}
-
-.submit-button:hover {
-  background: #9472E0;
-}
-
-.agreement-text {
-  font-size: 0.875rem;
-  color: #938EA2;
-  text-align: left;
-}
-
-@media (max-width: 768px) {
-  .first-success-block {
-    font-size: 44px;
-    font-weight: 500;
-  }
-
-  .error-block {
-    top: 125px;
-  }
-
-  .second-success-block {
-    font-size: 44px;
-    font-weight: 500;
-  }
-
-  .third-success-block {
-    font-size: 16px;
-    font-weight: 400;
-  }
-
-  .heading-large {
-    font-size: 44px;
-    line-height: 44px;
-
-  }
-
-  .heading-small {
-    font-size: 18px;
-    line-height: 21px;
-  }
-
-  .form-container {
-    padding: 0.75rem;
-  }
-
-  .submit-button {
-    height: 3rem;
-    font-size: 1rem;
-  }
-
-  .agreement-text {
-    font-size: 0.75rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .first-success-block {
-    font-size: 32px;
-    font-weight: 500;
-  }
-
-  .second-success-block {
-    font-size: 32px;
-    font-weight: 500;
-  }
-
-  .third-success-block {
-    font-size: 16px;
-    font-weight: 400;
-  }
-
-  .heading-large {
-    font-size: 32px;
-    line-height: 35px;
-  }
-
-  .heading-small {
-    font-size: 16px;
-  }
-
-
-  .form-container {
-    padding: 0.5rem;
-    gap: 0.75rem;
-    height: 410px;
-  }
-
-  .label {
-    font-size: 0.875rem;
   }
 
   .input {
-    padding: 0.5rem;
-    font-size: 0.875rem;
+    border: none;
+    padding: 12px 16px 12px 16px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+    height: 44px;
   }
 
-  .submit-button {
-    height: 2.75rem;
-    font-size: 0.875rem;
+  .input:focus-visible {
+    outline: 2px solid #8453D4
   }
+
+  .input:hover {
+
+  }
+
+  input:valid {
+    background: #FFFFFF;
+
+  }
+
+  .input-invalid {
+    border: 2px solid #DF070B
+  }
+
+  .label {
+    font-size: 16px;
+    font-weight: 400;
+    color: #4f4a5a;
+  }
+
+
+  .submit-button {
+
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    height: 56px;
+    line-height: 21px;
+    border-radius: 16px;
+    width: 100%;
+    background: linear-gradient(90deg, #8453D4 0%, #8656D5 20%, #8657D6 40%, #8B61D9 60%, #8F68DC 80%, #9472E0 100%);
+  }
+
+  .submit-button:hover {
+    background: #9472E0;
+  }
+
+  .agreement-text {
+    font-size: 0.875rem;
+    color: #938EA2;
+    text-align: left;
+  }
+
+  @media (max-width: 768px) {
+    .first-success-block {
+      font-size: 44px;
+      font-weight: bold;
+    }
+    .text-block {
+      gap: 8px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+    }
+    .error-block {
+      top: 125px;
+      font-size: 14px;
+    }
+
+    .second-success-block {
+      font-size: 44px;
+      font-weight: 500;
+    }
+
+    .third-success-block {
+      font-size: 16px;
+      font-weight: 400;
+    }
+.main-container{
+  position: relative;
 }
+    .heading-large {
+      font-size: 44px;
+      line-height: 44px;
+
+    }
+
+    .heading-small {
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    .form-container {
+      padding: 0.75rem;
+    }
+
+    .submit-button {
+      height: 3rem;
+      font-size: 1rem;
+    }
+
+    .agreement-text {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .heading-large {
+      font-size: 36px;
+      line-height: 44px;
+
+    }
+    .text-block {
+      margin-bottom: 5px;
+    }
+    .heading-small {
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+
 </style>

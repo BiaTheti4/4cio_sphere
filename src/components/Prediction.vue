@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center  text-center ">
+  <div class="flex flex-col items-center  text-center  ">
     <div class="main-text">
       <div class="first-text" :class="textSizeClass">
         Шар предсказаний
@@ -120,13 +120,13 @@ const subTextSizeClass = computed(() => {
 const predictionBoxClass = computed(() => {
   if (isMobile.value) return 'w-[90%] h-[100%]';
   if (isTablet.value) return 'w-[440px] h-[100%]';
-  return 'w-[542px] h-[15vh]';
+  return 'w-[493px] h-[15vh]';
 });
 
 const predictionTextClass = computed(() => {
   if (isMobile.value) return 'w-[100%] h-auto text-[14px]';
   if (isTablet.value) return 'w-[456px] h-auto text-[16px]';
-  return 'w-[574px] h-[15vh] text-[16px]';
+  return 'w-[525px] h-[15vh] text-[16px]';
 });
 
 
@@ -195,17 +195,17 @@ const buttonClass = computed(() => {
   }
   if (isDesktop.value) {
     if (isLoading.value) {
-      return {width: '574px', height: '56px'};
+      return {width: '525px', height: '56px'};
     }
     if (hasClicked.value) {
-      return {width: '574px', height: '56px'};
+      return {width: '525px', height: '56px'};
     }
     if(!isLoading.value&&!hasClicked.value){
       return {width: '400px', height: '56px'};
     }
   }
   return {
-    width: isMobile.value ? '100%' : isTablet.value ? '574px' : '574px',
+    width: isMobile.value ? '100%' : isTablet.value ? '525px' : '525px',
     height: isMobile.value ? '56px' : isTablet.value ? '56px' : '56px',
   };
 });
@@ -228,14 +228,14 @@ const sphereStyle = computed(() => {
   }
   if (isDesktop.value) {
     if (isLoading.value) {
-      return {width: '574px', height: 'auto'};
+      return {width: '525px', height: 'auto'};
     }
     if (hasClicked.value) {
       return {width: '328px', height: 'auto'};
     }
   }
   return {
-    width: isMobile.value ? '328px' : isTablet.value ? '508px' : '574px',
+    width: isMobile.value ? '300px' : isTablet.value ? '508px' : '525px',
     height: 'auto'
   };
 });
@@ -257,9 +257,8 @@ const getRandomPrediction = () => {
 
 <style scoped>
 
-.sphere {
-  width: 27vw;
-  margin-bottom: 40px;
+.sphere{
+  margin-bottom: 12px;
 }
 
 .main-text {
@@ -354,7 +353,7 @@ const getRandomPrediction = () => {
   .bubble-message{
     position: absolute;
     top:23%;
-    left:90%;
+    left:100%;
   }
 }
 @media (min-width: 511px) and (max-width: 1100px) {
@@ -367,7 +366,7 @@ const getRandomPrediction = () => {
 @media (max-width: 510px) {
   .bubble-message{
     position: absolute;
-    bottom:-11%;
+    bottom:-13%;
     right: 0;
   }
 }
