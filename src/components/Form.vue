@@ -5,7 +5,7 @@
     <div v-if="!formSubmitted" class="text-block">
       <div class="heading-large">План мероприятий</div>
       <div class="heading-small">
-        2025 год <span class="underline decoration-wavy decoration-purple-600">вместе</span> с клубом 4CIO
+        2025 год <span class="underline decoration-wavy decoration-purple-600">вместе</span> с Клубом 4CIO
       </div>
     </div>
 
@@ -168,6 +168,12 @@ const mapValidationErrors = (validationErrors) => {
   text-align: center;
   height: 70vh;
   width: 800px;
+}
+
+@media  screen and (min-width: 1300px) and (max-width: 1500px) and (min-height: 800px) and (max-height: 900px) {
+.text-block{
+  margin-bottom: 50px;
+}
 }
 
 @media screen and (max-width: 820px) {
